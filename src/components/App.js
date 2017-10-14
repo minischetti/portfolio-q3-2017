@@ -29,7 +29,7 @@ class Portfolio extends React.Component {
         return (
             <div id="portfolio" className="portfolio">
                 <ExpandedApp selectedApp={this.state.selectedApp}/>
-                <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp} updateMessageState={this.updateMessageState}/>
+                <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp} updateMessageState={this.updateMessageState} showMessage={showMessage}/>
                 <PopupMessage destination={destination} handleMessageVisibility={this.handleMessageVisibility} showMessage={showMessage}/>
                 <div className="background-image-blurred" style={{backgroundImage: `url(${selectedApp.background})`}}></div>
             </div>
@@ -72,13 +72,13 @@ class ExpandedApp extends React.Component {
 class AppList extends React.Component {
     render() {
         const professionalApps = apps.professional.map((app) =>
-            <App key={app.id} app={app} selectedApp={this.props.selectedApp} updateSelectedApp={this.props.updateSelectedApp}/>
+            <App key={app.id} app={app} selectedApp={this.props.selectedApp} updateSelectedApp={this.props.updateSelectedApp} showMessage={this.props.showMessage}/>
         );
         const personalApps = apps.personal.map((app) =>
-            <App key={app.id} app={app} selectedApp={this.props.selectedApp} updateSelectedApp={this.props.updateSelectedApp}/>
+            <App key={app.id} app={app} selectedApp={this.props.selectedApp} updateSelectedApp={this.props.updateSelectedApp} showMessage={this.props.showMessage}/>
         );
         const socialApps = apps.social.map((app) =>
-            <ExternalApp key={app.id} app={app} updateMessageState={this.props.updateMessageState}/>
+            <ExternalApp key={app.id} app={app} updateMessageState={this.props.updateMessageState} showMessage={this.props.showMessage}/>
         );
         const selectedApp = this.props.selectedApp;
         return (
@@ -155,7 +155,7 @@ class App extends React.Component {
     render() {
         const app = this.props.app;
         return (
-            <div className="app" tabIndex="0" style={{backgroundColor: app.color}} onClick={() => this.props.updateSelectedApp(app)}>
+            <div className="app" tabIndex={this.props.showMessage ? "-1" : "0"} style={{backgroundColor: app.color}} onClick={() => this.props.updateSelectedApp(app)}>
                 <img className="app-logo" src={app.logo}/>
                 <span className="app-name">{app.name}</span>
             </div>
@@ -188,7 +188,7 @@ class ExternalApp extends React.Component {
         const destination = app.destination;
         return (
             <div>
-                <div className="app" tabIndex="0" style={{ backgroundColor: app.color }} onClick={() => this.handleMessageVisibility(destination)}>
+                <div className="app" tabIndex={this.props.showMessage ? "-1" : "0"} style={{ backgroundColor: app.color }} onClick={() => this.handleMessageVisibility(destination)}>
                     <img className="app-logo" src={app.logo}/>
                     <span className="app-name">{app.name}</span>
                 </div>
