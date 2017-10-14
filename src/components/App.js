@@ -4,20 +4,33 @@ import apps from './apps.json'
 class Portfolio extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { selectedApp: apps.professional[0] };
+        this.state = { selectedApp: apps.professional[0], showMessage: false, externalLink: "" };
         this.updateSelectedApp = this.updateSelectedApp.bind(this);
+        this.updateMessageState = this.updateMessageState.bind(this);
+        this.handleMessageVisibility = this.handleMessageVisibility.bind(this);
     }
 
     updateSelectedApp(selectedApp) {
         this.setState({selectedApp});
     }
 
+    updateMessageState(destination) {
+        this.setState({showMessage: !this.state.showMessage, externalLink: destination});
+    }
+
+    handleMessageVisibility() {
+        this.setState({showMessage: !this.state.showMessage});
+    }
+
     render() {
         const selectedApp = this.state.selectedApp;
+        const showMessage = this.state.showMessage;
+        const destination = this.state.externalLink;
         return (
             <div id="portfolio" className="portfolio">
                 <ExpandedApp selectedApp={this.state.selectedApp}/>
-                <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp}/>
+                <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp} updateMessageState={this.updateMessageState}/>
+                <PopupMessage destination={destination} handleMessageVisibility={this.handleMessageVisibility} showMessage={showMessage}/>
                 <div className="background-image-blurred" style={{backgroundImage: `url(${selectedApp.background})`}}></div>
             </div>
         )
@@ -65,7 +78,7 @@ class AppList extends React.Component {
             <App key={app.id} app={app} selectedApp={this.props.selectedApp} updateSelectedApp={this.props.updateSelectedApp}/>
         );
         const socialApps = apps.social.map((app) =>
-            <ExternalApp key={app.id} app={app}/>
+            <ExternalApp key={app.id} app={app} updateMessageState={this.props.updateMessageState}/>
         );
         const selectedApp = this.props.selectedApp;
         return (
@@ -142,7 +155,7 @@ class App extends React.Component {
     render() {
         const app = this.props.app;
         return (
-            <div className="app" style={{backgroundColor: app.color}} onClick={() => this.props.updateSelectedApp(app)}>
+            <div className="app" tabIndex="0" style={{backgroundColor: app.color}} onClick={() => this.props.updateSelectedApp(app)}>
                 <img className="app-logo" src={app.logo}/>
                 <span className="app-name">{app.name}</span>
             </div>
@@ -152,28 +165,34 @@ class App extends React.Component {
 class ExternalApp extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { showMessage: false };
+        // this.state = { showMessage: false };
         this.handleMessageVisibility = this.handleMessageVisibility.bind(this);
     }
 
-    handleMessageVisibility() {
-        const popup = document.getElementById("popup-message-container");
-        this.setState({ showMessage: !this.state.showMessage })
-        document.body.classList.toggle("no-scroll");
-        // popup.classList.toggle("active");
-
+    handleMessageVisibility(destination) {
+        console.log(destination);
+        this.props.updateMessageState(destination);
     }
+
+    // handleMessageVisibility() {
+    //     const popup = document.getElementById("popup-message-container");
+    //     this.setState({ showMessage: !this.state.showMessage })
+    //     document.body.classList.toggle("no-scroll");
+    //     // popup.classList.toggle("active");
+
+    // }
 
     render() {
         const app = this.props.app;
-        const showMessage = this.state.showMessage;
+        // const showMessage = this.state.showMessage;
+        const destination = app.destination;
         return (
             <div>
-                <div className="app" target="_blank" style={{backgroundColor: app.color}} onClick={() => this.handleMessageVisibility()}>
+                <div className="app" tabIndex="0" style={{ backgroundColor: app.color }} onClick={() => this.handleMessageVisibility(destination)}>
                     <img className="app-logo" src={app.logo}/>
                     <span className="app-name">{app.name}</span>
                 </div>
-                {showMessage && <PopupMessage destination={app.destination} handleMessageVisibility={this.handleMessageVisibility}/>}
+                {/* {showMessage && <PopupMessage destination={app.destination} handleMessageVisibility={this.handleMessageVisibility}/>} */}
             </div>
         )
     }
@@ -196,13 +215,13 @@ class PopupMessage extends React.Component {
     // }
     render() {
         return (
-            <div id="popup-message-container" className="popup-message-container">
+            <div id="popup-message-container" className={`popup-message-container${this.props.showMessage ? " active" : ""}`}>
                 <div className="popup-message">
                     <div className="popup-message-content">
-                        <div className="popup-description">This app leads to an external site. Would you like to continue?</div>
+                        <div className="popup-description">You're about to leave the app! Would you like to continue?</div>
                         <div className="button-container">
                             <a className="button" href={this.props.destination} target="_blank" onClick={this.props.handleMessageVisibility}>Proceed</a>
-                            <span className="button" onClick={this.props.handleMessageVisibility}>Return</span>
+                            <span className="button" tabIndex="0" onClick={this.props.handleMessageVisibility}>Return</span>
                         </div>
                     </div>
                 </div>

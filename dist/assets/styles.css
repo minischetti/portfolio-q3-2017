@@ -137,14 +137,15 @@ h1, p {
     transition: .25s all;
     cursor: pointer;
     user-select: none;
+    outline: 0;
 }
 
-.app:hover, app.selected {
+.app:hover, .app:focus, app.selected {
     transform: scale(1.1);
     box-shadow: inset 0 0 40px rgba(0,0,0,.25), 0 0 20px 10px rgba(0,0,0,.25);
 }
 
-.app:hover .app-name {
+.app:hover .app-name, .app:focus .app-name {
     transform: translateY(125%);
     opacity: 1;
 }
@@ -178,14 +179,14 @@ h1, p {
     color: rgba(255,255,255,.25);
 }
 
-@keyframes slideDown {
+@keyframes expand {
     0% {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: scaleY(0);
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: scaleY(1);
     }
 }
 
@@ -198,21 +199,23 @@ h1, p {
     left: 0;
     width: 100%;
     height: 100%;
-    /* opacity: 0; */
+    opacity: 0;
     /* transform: translateY(-20px); */
-    /* background-color: rgba(0,0,0,.75); */
+    background-color: rgba(0,0,0,.75);
     z-index: 1;
-    /* pointer-events: none; */
+    pointer-events: none;
+    transition: .25s all;
 }
 
-/* .popup-message-container.active {
+.popup-message-container.active {
+    opacity: 1;
     pointer-events: all;
 }
 
 .popup-message-container.active .popup-message {
     opacity: 1;
-    transform: translateY(0);
-} */
+    transform: scaleY(1);
+}
 
 .popup-message {
     display: flex;
@@ -222,11 +225,11 @@ h1, p {
     padding: 40px;
     background-color: black;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0,0,0,.25);
+    box-shadow: 0 0 40px rgba(0,0,0,.5);
     z-index: 2;
-    /* transition: .25s all; */
-    /* opacity: 0; */
-    /* transform: translateY(-20px); */
+    animation: .25s expand;
+    transition: .25s all;
+    transform: scaleY(0);
 }
 
 .popup-message-content {
@@ -252,6 +255,14 @@ h1, p {
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
+    user-select: none;
+    transition: .25s all;
+}
+
+.button:hover, .button:focus {
+    transform: scale(1.1);
+    box-shadow: inset 0 0 0 2px white, 0 0 10px rgba(0,0,0,.25);
+    outline: 0;
 }
 
 .button:not(:last-child) {
