@@ -1,0 +1,112 @@
+{
+    "professional":
+    [
+        {
+            "name": "Williams Sonoma",
+            "id": "williams-sonoma",
+            "position": "Front-end Engineer",
+            "technology": [
+                "HTML + Freemarker",
+                "CSS + SASS",
+                "JavaScript",
+                "Webpack",
+                "Java",
+                "Sketch"
+            ],
+            "location": "California",
+            "duration": "April 2017 - Present",
+            "description": "Responsible for front-end development on a cross-functional, agile-driven team that creates and supports an expansive, multi-brand e-commerce platform. Interfaces with back-end and design teams to develop new initiatives utilizing core web technologies and write unit tests in Java within SVN and Git workflows.",
+            "background": "assets/backgrounds/ws.png",
+            "logo": "assets/logos/ws.svg",
+            "altLogo": "assets/logos/ws-alt.svg",
+            "color": "#0A0A0A"
+        },
+        {
+            "name": "Bisk",
+            "id": "bisk",
+            "position": "Interactive Developer",
+            "technology": [
+                "HTML",
+                "CSS + SASS",
+                "JavaScript",
+                "Adobe Photoshop",
+                "Umbraco"
+            ],
+            "location": "Florida",
+            "duration": "April 2015 - March 2016",
+            "description": "Responsible for the design and development of internal and external marketing initiatives, including mobile and desktop websites and experiences. Worked extensively with other designers, developers, copywriters, stakeholders and the like to deliver impactful products.",
+            "background": "assets/backgrounds/bisk.jpg",
+            "logo": "assets/logos/bisk.svg",
+            "altLogo": "assets/logos/bisk.svg",
+            "color": "#FFFFFF"
+        }
+    ],
+    "personal":
+    [
+        {
+            "name": "Fortunes by Athena",
+            "id": "fortunes-by-athena",
+            "position": "Creator",
+            "technology": [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "React",
+                "Webpack"
+            ],
+            "location": "California",
+            "duration": "April 2017 - Present",
+            "description": "A performance prediction site, magic 8-ball style, based on the game Overwatch. Fortunes by Athena is a JavaScript-driven SPA that utilizes feedback-based audio with the Web Audio API, CSS animations and a keyboard control scheme to mimic the experience of using a desktop app.",
+            "background": "assets/backgrounds/fba.png",
+            "logo": "assets/logos/fba.svg",
+            "altLogo": "assets/logos/fba-alt.svg",
+            "color": "#FFFFFF"
+        },
+        {
+            "name": "Metro for Steam",
+            "id": "metro-for-steam",
+            "position": "Developer",
+            "technology": [
+                "HTML",
+                "CSS / SASS",
+                "JavaScript",
+                "Freemarker",
+                "Java"
+            ],
+            "background": "assets/backgrounds/mfs.jpg",
+            "logo": "assets/logos/mfs.svg",
+            "color": "#000000"
+        }
+    ],
+    "social":
+    [
+        {
+            "name": "Email",
+            "id": "email",
+            "logo": "assets/logos/email.svg",
+            "color": "#1A8CFF",
+            "destination": "mailto:domminischetti@gmail.com"
+        },
+        {
+            "name": "LinkedIn",
+            "id": "linkedin",
+            "logo": "assets/logos/linkedin.svg",
+            "color": "#FFFFFF",
+            "destination": "https://www.linkedin.com/in/domminischetti/"
+        },
+        {
+            "name": "GitHub",
+            "id": "github",
+            "logo": "assets/logos/github.svg",
+            "color": "#24292E",
+            "destination": "https://www.github.com/minischetti"
+        },
+        {
+            "name": "Resume",
+            "id": "resume",
+            "logo": "assets/logos/mfs.svg",
+            "color": "#000000",
+            "destination": "/resume.pdf"
+        }
+    ]
+}
