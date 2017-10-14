@@ -126,6 +126,28 @@ h1, p {
     margin-top: 10px
 }
 
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .app {
     position: relative;
     display: flex;
@@ -138,6 +160,8 @@ h1, p {
     cursor: pointer;
     user-select: none;
     outline: 0;
+    animation: 1s slideDown;
+    animation-fill-mode: backwards;
 }
 
 .app:hover, .app:focus, app.selected {
@@ -177,6 +201,8 @@ h1, p {
     font-weight: bold;
     text-transform: uppercase;
     color: rgba(255,255,255,.25);
+    animation: 1s slideRight;
+    animation-fill-mode: backwards;
 }
 
 @keyframes expand {

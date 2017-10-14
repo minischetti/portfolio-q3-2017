@@ -8,6 +8,26 @@ class Portfolio extends React.Component {
         this.updateSelectedApp = this.updateSelectedApp.bind(this);
         this.updateMessageState = this.updateMessageState.bind(this);
         this.handleMessageVisibility = this.handleMessageVisibility.bind(this);
+        this.animateApps = this.animateApps.bind(this);
+    }
+
+    
+    animateApps() {
+        const apps = document.querySelectorAll(".app");
+        const appLabels = document.querySelectorAll(".category-title");
+        let delay = 0;
+        apps.forEach(function(app) {
+            app.style.animationDelay = `${delay}s`;
+            delay = delay + .1;
+        });
+        appLabels.forEach(function(label) {
+            label.style.animationDelay = `${delay}s`;
+            delay = delay + .1;
+        });
+    }
+    
+    componentDidMount() {
+        this.animateApps();
     }
 
     updateSelectedApp(selectedApp) {
@@ -85,13 +105,13 @@ class AppList extends React.Component {
             <div className="app-list-container">
                 <div className="app-list-row">
                     <div className="app-list-section">
-                        <span className="category-title">Big Budget</span>
+                        <div className="category-title">Big Budget</div>
                         <div className="app-list">
                             {professionalApps}
                         </div>
                     </div>
                     <div className="app-list-section">
-                        <span className="category-title">Indie</span>
+                        <div className="category-title">Indie</div>
                         <div className="app-list">
                             {personalApps}
                         </div>
@@ -99,7 +119,7 @@ class AppList extends React.Component {
                 </div>
                 <div className="app-list-row">
                     <div className="app-list-section">
-                        <span className="category-title">Social</span>
+                        <div className="category-title">Social</div>
                         <div className="app-list">
                             {socialApps}
                         </div>
@@ -165,7 +185,6 @@ class App extends React.Component {
 class ExternalApp extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = { showMessage: false };
         this.handleMessageVisibility = this.handleMessageVisibility.bind(this);
     }
 
@@ -174,17 +193,8 @@ class ExternalApp extends React.Component {
         this.props.updateMessageState(destination);
     }
 
-    // handleMessageVisibility() {
-    //     const popup = document.getElementById("popup-message-container");
-    //     this.setState({ showMessage: !this.state.showMessage })
-    //     document.body.classList.toggle("no-scroll");
-    //     // popup.classList.toggle("active");
-
-    // }
-
     render() {
         const app = this.props.app;
-        // const showMessage = this.state.showMessage;
         const destination = app.destination;
         return (
             <div>
@@ -192,27 +202,12 @@ class ExternalApp extends React.Component {
                     <img className="app-logo" src={app.logo}/>
                     <span className="app-name">{app.name}</span>
                 </div>
-                {/* {showMessage && <PopupMessage destination={app.destination} handleMessageVisibility={this.handleMessageVisibility}/>} */}
             </div>
         )
     }
 }
 
 class PopupMessage extends React.Component {
-    // componentDidMount() {
-    //     const popup = document.getElementById("popup-message-container");
-    //     setTimeout(function() {
-    //         popup.classList.add("active");
-    //     }, 500);
-    // }
-
-    // componentWillUnmount() {
-    //     const popup = document.getElementById("popup-message-container");
-    //     popup.classList.remove("active");
-    //     setTimeout(function() {
-    //         return true;
-    //     }, 500);
-    // }
     render() {
         return (
             <div id="popup-message-container" className={`popup-message-container${this.props.showMessage ? " active" : ""}`}>
