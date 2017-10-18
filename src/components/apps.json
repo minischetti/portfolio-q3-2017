@@ -5,6 +5,7 @@
             "name": "Williams Sonoma",
             "id": "williams-sonoma",
             "position": "Front-end Engineer",
+            "xPos": "0",
             "technology": [
                 "HTML + Freemarker",
                 "CSS + SASS",
@@ -16,7 +17,7 @@
             "location": "California",
             "duration": "April 2017 - Present",
             "description": "Responsible for front-end development on a cross-functional, agile-driven team that creates and supports an expansive, multi-brand e-commerce platform. Interfaces with back-end and design teams to develop new initiatives utilizing core web technologies and write unit tests in Java within SVN and Git workflows.",
-            "background": "assets/backgrounds/ws.png",
+            "background": "assets/backgrounds/ws.jpg",
             "logo": "assets/logos/ws.svg",
             "altLogo": "assets/logos/ws-alt.svg",
             "color": "#0A0A0A"
@@ -25,6 +26,7 @@
             "name": "Bisk",
             "id": "bisk",
             "position": "Interactive Developer",
+            "xPos": "-100%",
             "technology": [
                 "HTML",
                 "CSS + SASS",
@@ -35,7 +37,7 @@
             "location": "Florida",
             "duration": "April 2015 - March 2016",
             "description": "Responsible for the design and development of internal and external marketing initiatives, including mobile and desktop websites and experiences. Worked extensively with other designers, developers, copywriters, stakeholders and the like to deliver impactful products.",
-            "background": "assets/backgrounds/bisk.jpg",
+            "background": "assets/backgrounds/be.jpg",
             "logo": "assets/logos/bisk.svg",
             "altLogo": "assets/logos/bisk.svg",
             "color": "#FFFFFF"
@@ -47,6 +49,7 @@
             "name": "Fortunes by Athena",
             "id": "fortunes-by-athena",
             "position": "Creator",
+            "xPos": "-200%",
             "technology": [
                 "HTML",
                 "CSS",
@@ -55,7 +58,7 @@
                 "Webpack"
             ],
             "location": "California",
-            "duration": "April 2017 - Present",
+            "duration": "March 2017 - Present",
             "description": "A performance prediction site, magic 8-ball style, based on the game Overwatch. Fortunes by Athena is a JavaScript-driven SPA that utilizes feedback-based audio with the Web Audio API, CSS animations and a keyboard control scheme to mimic the experience of using a desktop app.",
             "background": "assets/backgrounds/fba.png",
             "logo": "assets/logos/fba.svg",
@@ -66,6 +69,7 @@
             "name": "Metro for Steam",
             "id": "metro-for-steam",
             "position": "Developer",
+            "xPos": "-300%",
             "technology": [
                 "HTML",
                 "CSS / SASS",
@@ -73,6 +77,9 @@
                 "Freemarker",
                 "Java"
             ],
+            "location": "Florida",
+            "duration": "March 2012 - Present",
+            "description": "Metro for Steam is a reimagination of Valve's Steam client and streamlines the original design to feature a cleaner, more functional user interface. With a community group of nearly 30,000 members and over 1,000,000 downloads, it's safe to say Metro has picked up quite a lot of steam (pun intended)!",
             "background": "assets/backgrounds/mfs.jpg",
             "logo": "assets/logos/mfs.svg",
             "color": "#000000"
