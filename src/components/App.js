@@ -120,7 +120,9 @@ class ExpandedApp extends React.Component {
                             <span>{selectedApp.duration}</span>
                         </div>
                         <p>{selectedApp.description}</p>
-                        <div className="button" onClick={() => this.handleMessageVisibility(destination)}>Visit Website</div>
+                        <div className="button" onClick={() => this.handleMessageVisibility(destination)}>
+                            {<img src="assets/logos/arrow.svg"/>}
+                        </div>
                     </div>
                 </div>
                 <div className="background-image" style={{backgroundImage: `url(${selectedApp.background})`}}></div>
