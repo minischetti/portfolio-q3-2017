@@ -18,7 +18,7 @@ class Portfolio extends React.Component {
     animateApps() {
         const apps = document.querySelectorAll(".app");
         const appLabels = document.querySelectorAll(".category-title");
-        let delay = 1;
+        let delay = 1.75;
         apps.forEach(function(app) {
             app.style.animationDelay = `${delay}s`;
             delay = delay + .1;
