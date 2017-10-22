@@ -4,14 +4,14 @@
         {
             "name": "Williams Sonoma",
             "id": "williams-sonoma",
+            "destination": "https://www.williams-sonoma.com",
             "position": "Front-end Engineer",
             "technology": [
                 "HTML + Freemarker",
                 "CSS + SASS",
                 "JavaScript",
                 "Webpack",
-                "Java",
-                "Sketch"
+                "Java"
             ],
             "location": "California",
             "duration": "April 2017 - Present",
@@ -24,6 +24,7 @@
         {
             "name": "Bisk",
             "id": "bisk",
+             "destination": "https://www.bisk.com",
             "position": "Interactive Developer",
             "technology": [
                 "HTML",
@@ -37,7 +38,7 @@
             "description": "Responsible for the design and development of internal and external marketing initiatives, including mobile and desktop websites and experiences. Worked extensively with other designers, developers, copywriters, stakeholders and the like to deliver impactful products.",
             "background": "assets/backgrounds/be.jpg",
             "logo": "assets/logos/bisk.svg",
-            "altLogo": "assets/logos/bisk.svg",
+            "altLogo": "assets/logos/bisk-alt.svg",
             "color": "#FFFFFF"
         }
     ],
@@ -46,6 +47,7 @@
         {
             "name": "Fortunes by Athena",
             "id": "fortunes-by-athena",
+            "destination": "http://www.fortunesbyathena.com",
             "position": "Creator",
             "technology": [
                 "HTML",
@@ -65,6 +67,7 @@
         {
             "name": "Metro for Steam",
             "id": "metro-for-steam",
+            "destination": "http://www.metroforsteam.com",
             "position": "Creator",
             "technology": [
                 "HTML",
