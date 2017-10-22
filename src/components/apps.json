@@ -5,7 +5,6 @@
             "name": "Williams Sonoma",
             "id": "williams-sonoma",
             "position": "Front-end Engineer",
-            "xPos": "0",
             "technology": [
                 "HTML + Freemarker",
                 "CSS + SASS",
@@ -26,7 +25,6 @@
             "name": "Bisk",
             "id": "bisk",
             "position": "Interactive Developer",
-            "xPos": "-100%",
             "technology": [
                 "HTML",
                 "CSS + SASS",
@@ -49,7 +47,6 @@
             "name": "Fortunes by Athena",
             "id": "fortunes-by-athena",
             "position": "Creator",
-            "xPos": "-200%",
             "technology": [
                 "HTML",
                 "CSS",
@@ -68,8 +65,7 @@
         {
             "name": "Metro for Steam",
             "id": "metro-for-steam",
-            "position": "Developer",
-            "xPos": "-300%",
+            "position": "Creator",
             "technology": [
                 "HTML",
                 "CSS / SASS",

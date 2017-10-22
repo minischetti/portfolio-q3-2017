@@ -27,6 +27,42 @@ h1, p {
 }
 
 .portfolio {
+    opacity: 0;
+    transform: scale(.5);
+    transition: 1s all;
+    overflow: hidden;
+    transition-delay: .25s;
+}
+
+.portfolio.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.loading-screen {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1;
+    opacity: 0;
+    transform: scale(2);
+    transition: 1s all;
+}
+
+.loading-screen.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.loading-screen-logo {
+    margin: auto;
+}
+
+.portfolio {
     width: 100%;
     height: 100%;
 }
@@ -145,6 +181,15 @@ h1, p {
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
     }
 }
 

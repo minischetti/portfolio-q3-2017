@@ -4,18 +4,21 @@ import apps from './apps.json'
 class Portfolio extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { selectedApp: apps.professional[0], showMessage: false, externalLink: "" };
+        this.state = { selectedApp: apps.professional[0], showLoadingScreen: true, showMessage: false, externalLink: "" };
         this.updateSelectedApp = this.updateSelectedApp.bind(this);
         this.updateMessageState = this.updateMessageState.bind(this);
         this.handleMessageVisibility = this.handleMessageVisibility.bind(this);
         this.animateApps = this.animateApps.bind(this);
     }
 
-    
+    toggleLoadingScreen() {
+        this.setState({showLoadingScreen: !this.state.showLoadingScreen});
+    }
+
     animateApps() {
         const apps = document.querySelectorAll(".app");
         const appLabels = document.querySelectorAll(".category-title");
-        let delay = 0;
+        let delay = 1;
         apps.forEach(function(app) {
             app.style.animationDelay = `${delay}s`;
             delay = delay + .1;
@@ -27,6 +30,9 @@ class Portfolio extends React.Component {
     }
     
     componentDidMount() {
+        setTimeout(() => {
+            this.setState({showLoadingScreen: false});
+        }, 1000);
         this.animateApps();
     }
 
@@ -44,14 +50,28 @@ class Portfolio extends React.Component {
 
     render() {
         const selectedApp = this.state.selectedApp;
+        const showLoadingScreen = this.state.showLoadingScreen;
         const showMessage = this.state.showMessage;
         const destination = this.state.externalLink;
         return (
-            <div id="portfolio" className="portfolio">
-                <ExpandedApp selectedApp={this.state.selectedApp}/>
-                <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp} updateMessageState={this.updateMessageState} showMessage={showMessage}/>
-                <PopupMessage destination={destination} handleMessageVisibility={this.handleMessageVisibility} showMessage={showMessage}/>
-                <div className="background-image-blurred" style={{backgroundImage: `url(${selectedApp.background})`}}></div>
+            <div className="portfolio-container">
+                <LoadingScreen showLoadingScreen={this.state.showLoadingScreen}/>
+                <div id="portfolio" className={`portfolio${this.state.showLoadingScreen ? "" : " active"}`}>
+                    <ExpandedApp selectedApp={this.state.selectedApp}/>
+                    <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp} updateMessageState={this.updateMessageState} showMessage={showMessage}/>
+                    <PopupMessage destination={destination} handleMessageVisibility={this.handleMessageVisibility} showMessage={showMessage}/>
+                    <div className="background-image-blurred" style={{backgroundImage: `url(${selectedApp.background})`}}></div>
+                </div>
+            </div>
+        )
+    }
+}
+
+class LoadingScreen extends React.Component {
+    render() {
+        return (
+            <div className={`loading-screen${this.props.showLoadingScreen ? " active" : ""}`}>
+                <img className="loading-screen-logo" src="assets/logos/logo.png"/>
             </div>
         )
     }
@@ -213,7 +233,7 @@ class PopupMessage extends React.Component {
             <div id="popup-message-container" className={`popup-message-container${this.props.showMessage ? " active" : ""}`}>
                 <div className="popup-message">
                     <div className="popup-message-content">
-                        <div className="popup-description">You're about to leave the app! Would you like to continue?</div>
+                        <div className="popup-description">You're about to open a new tab! Would you like to continue?</div>
                         <div className="button-container">
                             <a className="button" href={this.props.destination} target="_blank" onClick={this.props.handleMessageVisibility}>Proceed</a>
                             <span className="button" tabIndex="0" onClick={this.props.handleMessageVisibility}>Return</span>
