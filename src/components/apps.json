@@ -19,7 +19,8 @@
             "background": "assets/backgrounds/ws.jpg",
             "logo": "assets/logos/ws.svg",
             "altLogo": "assets/logos/ws-alt.svg",
-            "color": "#0A0A0A"
+            "color": "#0A0A0A",
+            "xPos": "0"
         },
         {
             "name": "Bisk",
@@ -39,7 +40,8 @@
             "background": "assets/backgrounds/be.jpg",
             "logo": "assets/logos/bisk.svg",
             "altLogo": "assets/logos/bisk-alt.svg",
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "xPos": "-100%"
         }
     ],
     "personal":
@@ -62,7 +64,8 @@
             "background": "assets/backgrounds/fba.png",
             "logo": "assets/logos/fba.svg",
             "altLogo": "assets/logos/fba-alt.svg",
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "xPos": "-200%"
         },
         {
             "name": "Metro for Steam",
@@ -82,7 +85,8 @@
             "background": "assets/backgrounds/mfs.jpg",
             "logo": "assets/logos/mfs.svg",
             "altLogo": "assets/logos/mfs-alt.svg",
-            "color": "#000000"
+            "color": "#000000",
+            "xPos": "-300%"
         }
     ],
     "social":

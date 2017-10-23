@@ -53,12 +53,22 @@ class Portfolio extends React.Component {
         const showLoadingScreen = this.state.showLoadingScreen;
         const showMessage = this.state.showMessage;
         const destination = this.state.externalLink;
+        const professionalApps = apps.professional.map((app) =>
+            <ExpandedApp app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/>
+        );
+        const personalApps = apps.personal.map((app) =>
+            <ExpandedApp app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/>
+        );
         return (
             <div className="portfolio-container">
                 <LoadingScreen showLoadingScreen={this.state.showLoadingScreen}/>
                 <PopupMessage destination={destination} handleMessageVisibility={this.handleMessageVisibility} showMessage={showMessage}/>
                 <div id="portfolio" className={`portfolio${this.state.showLoadingScreen ? "" : " active"}`}>
-                    <ExpandedApp selectedApp={this.state.selectedApp} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/>
+                    <div className="expanded-app-container" style={{ transform: `translate3d(${selectedApp.xPos}, 0, 0)` }}>
+                        {professionalApps}
+                        {personalApps}
+                    </div>
+                    {/* <ExpandedApp selectedApp={this.state.selectedApp} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/> */}
                     <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp} updateMessageState={this.updateMessageState} showMessage={showMessage}/>
                     <div className="background-image-blurred" style={{backgroundImage: `url(${selectedApp.background})`}}></div>
                 </div>
@@ -97,7 +107,7 @@ class ExpandedApp extends React.Component {
     }
 
     render() {
-        const selectedApp = this.props.selectedApp;
+        const selectedApp = this.props.app;
         const destination = selectedApp.destination;
         const technology = selectedApp.technology.map((technology) =>
             <span key={technology}>{technology}</span>
