@@ -128,11 +128,40 @@ h1, p {
     position: relative;
     width: 100%;
     height: 55vh;
-    background-color: rgba(0,0,0,.25);
     /* overflow: hidden; */
     color: white;
     transition: .5s transform;
     will-change: transform;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.background-image-carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    transition: .5s transform;
+    will-change: transform;
+    z-index: -1;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.background-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    /* will-change: transform; */
+    /* overflow: hidden; */
+    /* -webkit-backface-visibility: hidden;
+    backface-visibility: hidden; */
 }
 
 .expanded-app {
@@ -142,18 +171,47 @@ h1, p {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    -webkit-backface-visibility: visible;
-    backface-visibility: visible;
+    background-color: rgba(0,0,0,.5);
+    /* will-change: transform; */
+    z-index: 1;
 }
 
-.expanded-app:nth-child(2) {
+.expanded-app:nth-child(2), .background-image-container:nth-child(2) {
     transform: translate3d(100%, 0px, 0px);
 }
-.expanded-app:nth-child(3) {
+.expanded-app:nth-child(3), .background-image-container:nth-child(3) {
     transform: translate3d(200%, 0px, 0px);
 }
-.expanded-app:nth-child(4) {
+.expanded-app:nth-child(4), .background-image-container:nth-child(4) {
     transform: translate3d(300%, 0px, 0px);
+}
+
+.background-image, .background-image-blurred {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100vh;
+    /* will-change: transform; */
+    /* transform: scale(1.1); */
+}
+
+.upper-half-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55vh;
+    overflow: hidden;
+}
+.bottom-half-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
 }
 
 .expanded-app-content {
@@ -210,30 +268,6 @@ h1, p {
     text-transform: uppercase;
 }
 
-.background-image, .background-image-blurred {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    will-change: transform;
-    /* transform: scale(1.1); */
-    transition: .25s background-image;
-}
-
-.background-image {
-    position: absolute;
-    filter: brightness(.5);
-    z-index: -1;
-}
-
-.background-image-blurred {
-    position: fixed;
-    z-index: -2;
-    filter: blur(10px) brightness(.5);
-}
-
 .app-list-container {
     position: relative;
     width: 100%;
@@ -241,6 +275,7 @@ h1, p {
     padding: 60px;
     background-color: rgba(0,0,0,.75);
     overflow-y: scroll;
+    /* -webkit-backdrop-filter: blur(10px); */
 }
 
 .app-list-row {
@@ -274,12 +309,12 @@ h1, p {
     -moz-user-select: none;
 }
 
-.app:hover, .app:focus, app.selected {
+.app:hover {
     transform: scale(1.1);
     box-shadow: inset 0 0 40px rgba(0,0,0,.25), 0 0 20px 10px rgba(0,0,0,.25);
 }
 
-.app:hover .app-name, .app:focus .app-name {
+.app:hover .app-name {
     transform: translateY(150%);
     opacity: 1;
 }
@@ -381,7 +416,7 @@ h1, p {
     transition: .25s all;
 }
 
-.button:hover, .button:focus {
+.button:hover {
     transform: scale(1.1);
     box-shadow: inset 0 0 0 2px white, 0 0 10px rgba(0,0,0,.25);
     outline: 0;

@@ -54,34 +54,51 @@ class Portfolio extends React.Component {
         const showMessage = this.state.showMessage;
         const destination = this.state.externalLink;
         const professionalApps = apps.professional.map((app) =>
-            <ExpandedApp app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/>
+            <ExpandedApp key={app.id} app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/>
         );
         const personalApps = apps.personal.map((app) =>
-            <ExpandedApp app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/>
+            <ExpandedApp key={app.id} app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/>
+        );
+        const professionalAppsBackground = apps.professional.map((app) =>
+            <BackgroundImage key={app.id} app={app} selectedApp={selectedApp}/>
+        );
+        const personalAppsBackground = apps.personal.map((app) =>
+            <BackgroundImage key={app.id} app={app} selectedApp={selectedApp}/>
         );
         return (
             <div className="portfolio-container">
                 <LoadingScreen showLoadingScreen={this.state.showLoadingScreen}/>
                 <PopupMessage destination={destination} handleMessageVisibility={this.handleMessageVisibility} showMessage={showMessage}/>
                 <div id="portfolio" className={`portfolio${this.state.showLoadingScreen ? "" : " active"}`}>
-                    <div className="expanded-app-container" style={{ transform: `translate3d(${selectedApp.xPos}, 0, 0)` }}>
+                    <div className="expanded-app-container" style={{ transform: `translateX(${selectedApp.xPos})` }}>
                         {professionalApps}
                         {personalApps}
                     </div>
+                    <div className="background-image-carousel" style={{ transform: `translateX(${selectedApp.xPos})` }}>
+                        {professionalAppsBackground}
+                        {personalAppsBackground}
+                    </div>
                     {/* <ExpandedApp selectedApp={this.state.selectedApp} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/> */}
                     <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp} updateMessageState={this.updateMessageState} showMessage={showMessage}/>
-                    <div className="background-image-blurred" style={{backgroundImage: `url(${selectedApp.background})`}}></div>
                 </div>
             </div>
         )
     }
 }
 
-class ExpandedAppTitle extends React.Component {
+class BackgroundImage extends React.Component {
     render() {
+        const app = this.props.app;
         const selectedApp = this.props.selectedApp;
         return (
-            <img className="expanded-app-logo" src={selectedApp.altLogo} />
+            <div className="background-image-container">
+                <div className="upper-half-container">
+                    <img className="background-image" src={app.background}/>
+                </div>
+                <div className="bottom-half-container">
+                    <img className="background-image-blurred" src={app.background}/>
+                </div>
+            </div>
         )
     }
 }
@@ -135,7 +152,6 @@ class ExpandedApp extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="background-image" style={{backgroundImage: `url(${selectedApp.background})`}}></div>
             </div>
         )
     }
