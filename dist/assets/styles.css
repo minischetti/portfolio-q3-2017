@@ -185,6 +185,9 @@ h1, p {
 .expanded-app:nth-child(4), .background-image-container:nth-child(4) {
     transform: translate3d(300%, 0px, 0px);
 }
+.expanded-app:nth-child(5), .background-image-container:nth-child(5) {
+    transform: translate3d(400%, 0px, 0px);
+}
 
 .background-image, .background-image-blurred {
     position: absolute;

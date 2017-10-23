@@ -4,7 +4,7 @@ import apps from './apps.json'
 class Portfolio extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { selectedApp: apps.professional[0], showLoadingScreen: true, showMessage: false, externalLink: "" };
+        this.state = { selectedApp: apps.bio[0], showLoadingScreen: true, showMessage: false, externalLink: "" };
         this.updateSelectedApp = this.updateSelectedApp.bind(this);
         this.updateMessageState = this.updateMessageState.bind(this);
         this.handleMessageVisibility = this.handleMessageVisibility.bind(this);
@@ -59,10 +59,16 @@ class Portfolio extends React.Component {
         const personalApps = apps.personal.map((app) =>
             <ExpandedApp key={app.id} app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/>
         );
+        const bio = apps.bio.map((app) =>
+            <Bio key={app.id} app={app}/>
+        );
         const professionalAppsBackground = apps.professional.map((app) =>
             <BackgroundImage key={app.id} app={app} selectedApp={selectedApp}/>
         );
         const personalAppsBackground = apps.personal.map((app) =>
+            <BackgroundImage key={app.id} app={app} selectedApp={selectedApp}/>
+        );
+        const bioBackground = apps.bio.map((app) =>
             <BackgroundImage key={app.id} app={app} selectedApp={selectedApp}/>
         );
         return (
@@ -71,14 +77,15 @@ class Portfolio extends React.Component {
                 <PopupMessage destination={destination} handleMessageVisibility={this.handleMessageVisibility} showMessage={showMessage}/>
                 <div id="portfolio" className={`portfolio${this.state.showLoadingScreen ? "" : " active"}`}>
                     <div className="expanded-app-container" style={{ transform: `translateX(${selectedApp.xPos})` }}>
+                        {bio}
                         {professionalApps}
                         {personalApps}
                     </div>
                     <div className="background-image-carousel" style={{ transform: `translateX(${selectedApp.xPos})` }}>
+                        {bioBackground}
                         {professionalAppsBackground}
                         {personalAppsBackground}
                     </div>
-                    {/* <ExpandedApp selectedApp={this.state.selectedApp} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/> */}
                     <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp} updateMessageState={this.updateMessageState} showMessage={showMessage}/>
                 </div>
             </div>
@@ -108,6 +115,35 @@ class LoadingScreen extends React.Component {
         return (
             <div className={`loading-screen${this.props.showLoadingScreen ? " active" : ""}`}>
                 <img className="loading-screen-logo" src="assets/logos/logo.png"/>
+            </div>
+        )
+    }
+}
+
+class Bio extends React.Component {
+    render() {
+        const selectedApp = this.props.app;
+        const skills = selectedApp.skills.map((skills) =>
+            <span key={skills}>{skills}</span>
+        );
+        return (
+            <div className={`expanded-app ${selectedApp.id}`}>
+                <img className="expanded-app-logo" src={selectedApp.altLogo} />
+                <div className="expanded-app-content">
+                    <div className="side-bar">
+                        <span className="label">Role</span>
+                        <span>{selectedApp.role}</span>
+                        <span className="label">Skills</span>
+                        {skills}
+                    </div>
+                    <div className="app-info">
+                        <div className="location-and-duration">
+                            <span className="label">Location</span>
+                            <span>{selectedApp.location}</span>
+                        </div>
+                        <p>{selectedApp.description}</p>
+                    </div>
+                </div>
             </div>
         )
     }

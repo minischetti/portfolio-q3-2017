@@ -1,4 +1,27 @@
 {
+    "bio":
+    [
+        {
+            "name": "This is Dominic Minischetti",
+            "id": "bio",
+            "destination": "https://www.williams-sonoma.com",
+            "role": "Front-end Engineer",
+            "skills": [
+                "HTML5 + Freemarker",
+                "CSS3 + Pre-processors",
+                "JavaScript (ES6) + React",
+                "Webpack",
+                "Java"
+            ],
+            "location": "California",
+            "duration": "April 2017 - Present",
+            "description": "Born and raised in New York, Dom developed an ever-growing interest in computers at any early age. He's since lived in Florida, Michigan and now resides in California working as a Front-end Engineer for Williams-Sonoma, Inc. Programming doesn't stop outside of work, where he finds himself becoming ever-proficient in the likes of React, Webpack and other modern web technologies. His interests don't solely lie in programming, as he also enjoys design, typography and animation immensely. If he's not programming, you'll most likely find him guitar in-hand, writing a new song with hopes of propelling himself to rockstar status.",
+            "background": "assets/backgrounds/ws.jpg",
+            "altLogo": "assets/logos/fba-alt.svg",
+            "color": "#0A0A0A",
+            "xPos": "0"
+        }
+    ],
     "professional":
     [
         {
@@ -20,7 +43,7 @@
             "logo": "assets/logos/ws.svg",
             "altLogo": "assets/logos/ws-alt.svg",
             "color": "#0A0A0A",
-            "xPos": "0"
+            "xPos": "-100%"
         },
         {
             "name": "Bisk",
@@ -41,7 +64,7 @@
             "logo": "assets/logos/bisk.svg",
             "altLogo": "assets/logos/bisk-alt.svg",
             "color": "#FFFFFF",
-            "xPos": "-100%"
+            "xPos": "-200%"
         }
     ],
     "personal":
@@ -65,7 +88,7 @@
             "logo": "assets/logos/fba.svg",
             "altLogo": "assets/logos/fba-alt.svg",
             "color": "#FFFFFF",
-            "xPos": "-200%"
+            "xPos": "-300%"
         },
         {
             "name": "Metro for Steam",
@@ -86,7 +109,7 @@
             "logo": "assets/logos/mfs.svg",
             "altLogo": "assets/logos/mfs-alt.svg",
             "color": "#000000",
-            "xPos": "-300%"
+            "xPos": "-400%"
         }
     ],
     "social":
