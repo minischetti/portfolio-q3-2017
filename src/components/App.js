@@ -75,6 +75,7 @@ class Portfolio extends React.Component {
             <div className="portfolio-container">
                 <LoadingScreen showLoadingScreen={this.state.showLoadingScreen}/>
                 <PopupMessage destination={destination} handleMessageVisibility={this.handleMessageVisibility} showMessage={showMessage}/>
+                <div className="bio-toggle" onClick={() => this.updateSelectedApp(apps.bio[0])}></div>
                 <div id="portfolio" className={`portfolio${this.state.showLoadingScreen ? "" : " active"}`}>
                     <div className="expanded-app-container" style={{ transform: `translateX(${selectedApp.xPos})` }}>
                         {bio}
@@ -103,7 +104,7 @@ class BackgroundImage extends React.Component {
                     <img className="background-image" src={app.background}/>
                 </div>
                 <div className="bottom-half-container">
-                    <img className="background-image-blurred" src={app.background}/>
+                    <img className="background-image-blurred" src={app.backgroundBlurred}/>
                 </div>
             </div>
         )

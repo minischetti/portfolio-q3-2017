@@ -124,6 +124,16 @@ h1, p {
     margin: auto;
 }
 
+.bio-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    z-index: 1;
+}
+
 .expanded-app-container {
     position: relative;
     width: 100%;
