@@ -309,7 +309,7 @@ h1, p {
 .expanded-app-logo {
     height: 80px;
     align-self: flex-start;
-    margin: 60px 0 20px calc(20% + 40px);
+    margin: 40px 0 20px calc(20% + 40px);
 }
 
 .expanded-app.williams-sonoma .expanded-app-logo, .expanded-app.metro-for-steam .expanded-app-logo {
@@ -333,7 +333,7 @@ h1, p {
 
 .app-info .button {
     display: inline-flex;
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: rgba(0,0,0,.25);
 }
 

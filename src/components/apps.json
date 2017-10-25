@@ -36,7 +36,7 @@
             ],
             "location": "California",
             "duration": "April 2017 - Present",
-            "description": "Responsible for front-end development on a cross-functional, agile-driven team that creates and supports an expansive, multi-brand e-commerce platform. Interfaces with back-end and design teams to develop new initiatives utilizing core web technologies and write unit tests in Java within SVN and Git workflows.",
+            "description": "Bear witness to the adventures of a front-end engineer on an agile-driven team that creates and supports an expansive, multi-brand e-commerce platform! At the heart, we follow Dom as he collaborates with back-end and design teams to develop new initiatives utilizing core web technologies... but there's much more to this position than meets the eye! Tales of Java development, unit tests, SVN, Git and more hide within!",
             "color": "#0A0A0A",
             "xPos": "0%"
         },
@@ -54,7 +54,7 @@
             ],
             "location": "Florida",
             "duration": "April 2015 - March 2016",
-            "description": "Responsible for the design and development of internal and external marketing initiatives, including mobile and desktop websites and experiences. Worked extensively with other designers, developers, copywriters, stakeholders and the like to deliver impactful products.",
+            "description": "Who would've thought he'd be designing and developing marketing initiatives for some of the nation's most well-respected universities? Or ensuring the invitations and table placeholders are print-ready and nothing short of perfect for the company's holiday party? Working so closely with print and illustrative experts is nothing short of inspiring, and some of that talent is eventually bound to rub off.",
             "color": "#FFFFFF",
             "xPos": "-100%"
         }
@@ -70,12 +70,11 @@
                 "HTML",
                 "CSS",
                 "JavaScript",
-                "React",
-                "Webpack"
+                "Web Audio API"
             ],
             "location": "California",
             "duration": "March 2017 - Present",
-            "description": "A performance prediction site, magic 8-ball style, based on the game Overwatch. Fortunes by Athena is a JavaScript-driven SPA that utilizes feedback-based audio with the Web Audio API, CSS animations and a keyboard control scheme to mimic the experience of using a desktop app.",
+            "description": "Do you play Overwatch? Perhaps... but has your fate been revealed? Fortunes by Athena is a magic 8-ball style performance prediction app based on the competitive shooter's cast of characters and fantastical abilities. Features feedback-based audio with the Web Audio API, CSS animations and a keyboard control scheme mimic the experience of using a desktop app.",
             "color": "#FFFFFF",
             "xPos": "-200%"
         },
@@ -88,8 +87,8 @@
                 "HTML",
                 "CSS / SASS",
                 "JavaScript",
-                "Freemarker",
-                "Java"
+                "VGUI",
+                "Adobe Photoshop"
             ],
             "location": "Florida",
             "duration": "March 2012 - Present",
