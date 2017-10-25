@@ -203,15 +203,12 @@ h1, p {
     height: 100%;
     background-color: black;
     color: white;
-    /* opacity: 0; */
     transform: translateY(-100%);
     background-color: black;
-    /* background-image: url("backgrounds/williams-sonoma.jpg"); */
     background-size: cover;
 }
 
 .bio.active {
-    /* opacity: 1; */
     transform: translateY(0);
 }
 
@@ -264,7 +261,7 @@ h1, p {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0,0,0,.65);
     z-index: 1;
 }
 
@@ -334,7 +331,7 @@ h1, p {
 .app-info .button {
     display: inline-flex;
     margin-top: 10px;
-    background-color: rgba(0,0,0,.25);
+    background-color: rgba(0,0,0,.5);
 }
 
 .app-info .button img {
@@ -360,7 +357,7 @@ h1, p {
     width: 100%;
     height: 45vh;
     padding: 60px;
-    background-color: rgba(0,0,0,.75);
+    background-color: rgba(0,0,0,.85);
     overflow-y: scroll;
 }
 

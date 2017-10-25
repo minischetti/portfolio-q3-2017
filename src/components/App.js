@@ -84,10 +84,10 @@ class Portfolio extends React.Component {
         const showMessage = this.state.showMessage;
         const destination = this.state.externalLink;
         const professionalApps = apps.professional.map((app) =>
-            <ExpandedApp key={app.id} app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState} fetchAsset={this.fetchAsset}/>
+            <ExpandedApp key={app.id} app={app} updateMessageState={this.updateMessageState} fetchAsset={this.fetchAsset}/>
         );
         const personalApps = apps.personal.map((app) =>
-            <ExpandedApp key={app.id} app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState} fetchAsset={this.fetchAsset}/>
+            <ExpandedApp key={app.id} app={app} updateMessageState={this.updateMessageState} fetchAsset={this.fetchAsset}/>
         );
         const bio = apps.bio.map((app) =>
             <Bio key={app.id} app={app}/>
@@ -180,10 +180,6 @@ class Bio extends React.Component {
 }
 
 class ExpandedApp extends React.Component {
-    handleMessageVisibility(destination) {
-        this.props.updateMessageState(destination);
-    }
-
     render() {
         const selectedApp = this.props.app;
         const destination = selectedApp.destination;
@@ -208,7 +204,7 @@ class ExpandedApp extends React.Component {
                             <span>{selectedApp.duration}</span>
                         </div>
                         <p>{selectedApp.description}</p>
-                        <div className="button button-small" onClick={() => this.handleMessageVisibility(destination)}>View Website</div>
+                        <div className="button button-small" onClick={() => this.props.updateMessageState(destination)}>View Website</div>
                     </div>
                 </div>
             </div>
