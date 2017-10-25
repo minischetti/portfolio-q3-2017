@@ -9,6 +9,7 @@ class Portfolio extends React.Component {
         this.updateMessageState = this.updateMessageState.bind(this);
         this.handleMessageVisibility = this.handleMessageVisibility.bind(this);
         this.animateApps = this.animateApps.bind(this);
+        this.fetchAsset = this.fetchAsset.bind(this);
     }
 
     toggleLoadingScreen() {
@@ -48,28 +49,41 @@ class Portfolio extends React.Component {
         this.setState({showMessage: !this.state.showMessage});
     }
 
+    fetchAsset(type, app) {
+        switch (type) {
+            case "background":
+                return `assets/backgrounds/${app}.jpg`;
+            case "backgroundBlurred":
+                return `assets/backgrounds/${app}-blurred.jpg`;
+            case "logo":
+                return `assets/logos/${app}.svg`;
+            case "logoAlt":
+                return `assets/logos/${app}-alt.svg`;
+        }
+    }
+
     render() {
         const selectedApp = this.state.selectedApp;
         const showLoadingScreen = this.state.showLoadingScreen;
         const showMessage = this.state.showMessage;
         const destination = this.state.externalLink;
         const professionalApps = apps.professional.map((app) =>
-            <ExpandedApp key={app.id} app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/>
+            <ExpandedApp key={app.id} app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState} fetchAsset={this.fetchAsset}/>
         );
         const personalApps = apps.personal.map((app) =>
-            <ExpandedApp key={app.id} app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState}/>
+            <ExpandedApp key={app.id} app={app} handleMessageVisibility={this.handleMessageVisibility} updateMessageState={this.updateMessageState} fetchAsset={this.fetchAsset}/>
         );
         const bio = apps.bio.map((app) =>
             <Bio key={app.id} app={app}/>
         );
         const professionalAppsBackground = apps.professional.map((app) =>
-            <BackgroundImage key={app.id} app={app} selectedApp={selectedApp}/>
+            <BackgroundImage key={app.id} app={app} selectedApp={selectedApp} fetchAsset={this.fetchAsset}/>
         );
         const personalAppsBackground = apps.personal.map((app) =>
-            <BackgroundImage key={app.id} app={app} selectedApp={selectedApp}/>
+            <BackgroundImage key={app.id} app={app} selectedApp={selectedApp} fetchAsset={this.fetchAsset}/>
         );
         const bioBackground = apps.bio.map((app) =>
-            <BackgroundImage key={app.id} app={app} selectedApp={selectedApp}/>
+            <BackgroundImage key={app.id} app={app} selectedApp={selectedApp} fetchAsset={this.fetchAsset}/>
         );
         return (
             <div className="portfolio-container">
@@ -87,7 +101,7 @@ class Portfolio extends React.Component {
                         {professionalAppsBackground}
                         {personalAppsBackground}
                     </div>
-                    <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp} updateMessageState={this.updateMessageState} showMessage={showMessage}/>
+                    <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp} updateMessageState={this.updateMessageState} showMessage={showMessage} fetchAsset={this.fetchAsset}/>
                 </div>
             </div>
         )
@@ -101,10 +115,10 @@ class BackgroundImage extends React.Component {
         return (
             <div className="background-image-container">
                 <div className="upper-half-container">
-                    <img className="background-image" src={app.background}/>
+                    <img className="background-image" src={this.props.fetchAsset("background", app.id)}/>
                 </div>
                 <div className="bottom-half-container">
-                    <img className="background-image-blurred" src={app.backgroundBlurred}/>
+                    <img className="background-image-blurred" src={this.props.fetchAsset("backgroundBlurred", app.id)}/>
                 </div>
             </div>
         )
@@ -168,7 +182,7 @@ class ExpandedApp extends React.Component {
         );
         return (
             <div className={`expanded-app ${selectedApp.id}`}>
-                <img className="expanded-app-logo" src={selectedApp.altLogo}/>
+                <img className="expanded-app-logo" src={this.props.fetchAsset("logoAlt", selectedApp.id)}/>
                 <div className="expanded-app-content">
                     <div className="side-bar">
                         <span className="label">Position</span>
@@ -197,13 +211,13 @@ class ExpandedApp extends React.Component {
 class AppList extends React.Component {
     render() {
         const professionalApps = apps.professional.map((app) =>
-            <App key={app.id} app={app} selectedApp={this.props.selectedApp} updateSelectedApp={this.props.updateSelectedApp} showMessage={this.props.showMessage}/>
+            <App key={app.id} app={app} selectedApp={this.props.selectedApp} updateSelectedApp={this.props.updateSelectedApp} fetchAsset={this.props.fetchAsset}/>
         );
         const personalApps = apps.personal.map((app) =>
-            <App key={app.id} app={app} selectedApp={this.props.selectedApp} updateSelectedApp={this.props.updateSelectedApp} showMessage={this.props.showMessage}/>
+            <App key={app.id} app={app} selectedApp={this.props.selectedApp} updateSelectedApp={this.props.updateSelectedApp} fetchAsset={this.props.fetchAsset}/>
         );
         const socialApps = apps.social.map((app) =>
-            <ExternalApp key={app.id} app={app} updateMessageState={this.props.updateMessageState} showMessage={this.props.showMessage}/>
+            <ExternalApp key={app.id} app={app} updateMessageState={this.props.updateMessageState} showMessage={this.props.showMessage} fetchAsset={this.props.fetchAsset}/>
         );
         const selectedApp = this.props.selectedApp;
         return (
@@ -244,7 +258,7 @@ class App extends React.Component {
         const app = this.props.app;
         return (
             <div className="app" tabIndex={this.props.showMessage ? "-1" : "0"} style={{backgroundColor: app.color}} onClick={() => this.props.updateSelectedApp(app)}>
-                <img className="app-logo" src={app.logo}/>
+                <img className="app-logo" src={this.props.fetchAsset("logo", app.id)}/>
                 <span className="app-name">{app.name}</span>
             </div>
         )
@@ -266,7 +280,7 @@ class ExternalApp extends React.Component {
         return (
             <div>
                 <div className="app" tabIndex={this.props.showMessage ? "-1" : "0"} style={{ backgroundColor: app.color }} onClick={() => this.handleMessageVisibility(destination)}>
-                    <img className="app-logo" src={app.logo}/>
+                    <img className="app-logo" src={this.props.fetchAsset("logo", app.id)}/>
                     <span className="app-name">{app.name}</span>
                 </div>
             </div>
