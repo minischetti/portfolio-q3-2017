@@ -4,12 +4,14 @@ import apps from './apps.json'
 class Portfolio extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { selectedApp: apps.bio[0], showLoadingScreen: true, showMessage: false, externalLink: "" };
+        this.state = { selectedApp: apps.professional[0], showLoadingScreen: true, showMessage: false, showBio: false, externalLink: "" };
         this.updateSelectedApp = this.updateSelectedApp.bind(this);
         this.updateMessageState = this.updateMessageState.bind(this);
         this.handleMessageVisibility = this.handleMessageVisibility.bind(this);
+        this.handleBioVisibility = this.handleBioVisibility.bind(this);
         this.animateApps = this.animateApps.bind(this);
         this.fetchAsset = this.fetchAsset.bind(this);
+        this.generatePortfolioClasses = this.generatePortfolioClasses.bind(this);
     }
 
     toggleLoadingScreen() {
@@ -49,6 +51,10 @@ class Portfolio extends React.Component {
         this.setState({showMessage: !this.state.showMessage});
     }
 
+    handleBioVisibility() {
+        this.setState({ showBio: !this.state.showBio});
+    }
+
     fetchAsset(type, app) {
         switch (type) {
             case "background":
@@ -62,9 +68,19 @@ class Portfolio extends React.Component {
         }
     }
 
+    generatePortfolioClasses() {
+        if (this.state.showLoadingScreen) {
+            return "loading-screen-visible";
+        } else if (this.state.showBio) {
+            return "bio-visible"
+        }
+        return;
+    }
+
     render() {
         const selectedApp = this.state.selectedApp;
         const showLoadingScreen = this.state.showLoadingScreen;
+        const showBio = this.state.showBio;
         const showMessage = this.state.showMessage;
         const destination = this.state.externalLink;
         const professionalApps = apps.professional.map((app) =>
@@ -87,22 +103,23 @@ class Portfolio extends React.Component {
         );
         return (
             <div className="portfolio-container">
-                <LoadingScreen showLoadingScreen={this.state.showLoadingScreen}/>
+                <LoadingScreen showLoadingScreen={showLoadingScreen}/>
                 <PopupMessage destination={destination} handleMessageVisibility={this.handleMessageVisibility} showMessage={showMessage}/>
-                <div className="bio-toggle" onClick={() => this.updateSelectedApp(apps.bio[0])}></div>
-                <div id="portfolio" className={`portfolio${this.state.showLoadingScreen ? "" : " active"}`}>
+                <div className="bio-trigger-container">
+                    <div className={`bio-trigger${showBio ? " bio-visible" : ""}`} onClick={() => this.handleBioVisibility()}></div>
+                </div>
+                <div id="portfolio" className={`portfolio ${this.generatePortfolioClasses()}`}>
                     <div className="expanded-app-container" style={{ transform: `translateX(${selectedApp.xPos})` }}>
-                        {bio}
                         {professionalApps}
                         {personalApps}
                     </div>
                     <div className="background-image-carousel" style={{ transform: `translateX(${selectedApp.xPos})` }}>
-                        {bioBackground}
                         {professionalAppsBackground}
                         {personalAppsBackground}
                     </div>
                     <AppList selectedApp={this.state.selectedApp} updateSelectedApp={this.updateSelectedApp} updateMessageState={this.updateMessageState} showMessage={showMessage} fetchAsset={this.fetchAsset}/>
                 </div>
+                <Bio showBio={this.state.showBio}/>
             </div>
         )
     }
@@ -135,28 +152,29 @@ class LoadingScreen extends React.Component {
     }
 }
 
+
 class Bio extends React.Component {
     render() {
-        const selectedApp = this.props.app;
-        const skills = selectedApp.skills.map((skills) =>
+        const bio = apps.bio[0];
+        const skills = bio.skills.map((skills) =>
             <span key={skills}>{skills}</span>
         );
         return (
-            <div className={`expanded-app ${selectedApp.id}`}>
-                <img className="expanded-app-logo" src={selectedApp.altLogo} />
+            <div className={`bio${this.props.showBio ? " active" : ""}`}>
+                <img className="expanded-app-logo" src={bio.altLogo} />
                 <div className="expanded-app-content">
                     <div className="side-bar">
                         <span className="label">Role</span>
-                        <span>{selectedApp.role}</span>
+                        <span>{bio.role}</span>
                         <span className="label">Skills</span>
                         {skills}
                     </div>
                     <div className="app-info">
                         <div className="location-and-duration">
                             <span className="label">Location</span>
-                            <span>{selectedApp.location}</span>
+                            <span>{bio.location}</span>
                         </div>
-                        <p>{selectedApp.description}</p>
+                        <p>{bio.description}</p>
                     </div>
                 </div>
             </div>
