@@ -79,24 +79,24 @@ h1, p {
     overflow: hidden;
 }
 
+.bio, .portfolio, .loading-screen, .expanded-app-container, .background-image-carousel, .bio-switch::before, .bio-switch::after {
+    transition: .75s transform cubic-bezier(1,-.20,.20,1), .75s opacity cubic-bezier(1,-.20,.20,1);
+}
+
 .portfolio {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    opacity: 0;
-    transform: scale(.5);
-    transition: 1s all;
-    transition-delay: .25s;
-}
-
-.portfolio.active {
-    opacity: 1;
     transform: scale(1);
 }
 
-/* .portfolio.blurred {
-    filter: blur(10px);
-} */
+.portfolio.loading-screen-visible {
+    transform: scale(.75);
+}
+
+.portfolio.bio-visible {
+    transform: translateY(100%);
+}
 
 .loading-screen {
     display: flex;
@@ -106,10 +106,9 @@ h1, p {
     width: 100%;
     height: 100%;
     background-color: black;
-    z-index: 1;
+    z-index: 2;
     opacity: 0;
     transform: scale(2);
-    transition: 1s all;
     pointer-events: none;
     user-select: none;
 }
@@ -117,30 +116,112 @@ h1, p {
 .loading-screen.active {
     opacity: 1;
     transform: scale(1);
-    pointer-events: all;
+    pointer-events: auto;
 }
 
 .loading-screen-logo {
     margin: auto;
 }
 
-.bio-toggle {
+.bio-switch-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+}
+
+@keyframes growIn {
+    0% {
+        opacity: 0;
+        transform: scale(.75);
+        pointer-events: none;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+    }
+}
+
+.bio-switch {
+    animation: .75s growIn cubic-bezier(1,-.20,.20,1);
+    animation-delay: 2.5s;
+    animation-fill-mode: backwards;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: rgba(255,255,255,.15);
+    cursor: pointer;
+    transition: .25s all;
+}
+
+.bio-switch:hover {
+    box-shadow: 0 0 20px rgba(0,0,0,.25);
+    transform: scale(1.1);
+}
+
+.bio-switch::before, .bio-switch::after {
+    content: "";
     position: absolute;
     top: 0;
-    right: 0;
-    width: 50px;
-    height: 50px;
-    background-color: red;
-    z-index: 1;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.bio-switch::before {
+    background-image: url(logos/me.jpg);
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.bio-switch::after {
+    background-image: url(logos/arrow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14px;
+    transform: translateY(-100%) rotateZ(-90deg);
+}
+
+.bio-switch.bio-visible::before {
+    transform: translateY(100%);
+}
+.bio-switch.bio-visible::after {
+    transform: translateY(0) rotateZ(-90deg);
+}
+
+.bio {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    transform: translateY(-100%);
+    background-color: black;
+    background-size: cover;
+}
+
+.bio.active {
+    transform: translateY(0);
+}
+
+.bio .expanded-app-content {
+    width: 100%;
+    margin: auto;
 }
 
 .expanded-app-container {
     position: relative;
     width: 100%;
     height: 55vh;
-    /* overflow: hidden; */
     color: white;
-    transition: .5s transform;
     will-change: transform;
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
@@ -153,12 +234,15 @@ h1, p {
     width: 100%;
     height: 100%;
     color: white;
-    transition: .5s transform;
     will-change: transform;
     z-index: -1;
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+.background-image-carousel.blurred {
+    filter: blur(10px);
 }
 
 .background-image-container {
@@ -168,10 +252,6 @@ h1, p {
     width: 100%;
     height: 100%;
     color: white;
-    /* will-change: transform; */
-    /* overflow: hidden; */
-    /* -webkit-backface-visibility: hidden;
-    backface-visibility: hidden; */
 }
 
 .expanded-app {
@@ -181,8 +261,7 @@ h1, p {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: rgba(0,0,0,.5);
-    /* will-change: transform; */
+    background-color: rgba(0,0,0,.65);
     z-index: 1;
 }
 
@@ -195,47 +274,39 @@ h1, p {
 .expanded-app:nth-child(4), .background-image-container:nth-child(4) {
     transform: translate3d(300%, 0px, 0px);
 }
-.expanded-app:nth-child(5), .background-image-container:nth-child(5) {
-    transform: translate3d(400%, 0px, 0px);
-}
 
-.background-image, .background-image-blurred {
+.upper-half-container, .bottom-half-container, .upper-half-image {
     position: absolute;
     top: 0;
     left: 0;
-    width: auto;
-    height: 100vh;
-    /* will-change: transform; */
-    /* transform: scale(1.1); */
+    width: 100%;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .upper-half-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
     height: 55vh;
-    overflow: hidden;
 }
-.bottom-half-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+
+.upper-half-image {
     height: 100vh;
-    overflow: hidden;
+}
+
+.bottom-half-container {
+    height: 100vh;
     z-index: -1;
 }
 
 .expanded-app-content {
     display: flex;
-    height: 100%;
 }
 
 .expanded-app-logo {
     height: 80px;
     align-self: flex-start;
-    margin: 60px 0 20px calc(20% + 40px);
+    margin: 40px 0 20px calc(20% + 40px);
 }
 
 .expanded-app.williams-sonoma .expanded-app-logo, .expanded-app.metro-for-steam .expanded-app-logo {
@@ -259,8 +330,8 @@ h1, p {
 
 .app-info .button {
     display: inline-flex;
-    margin-top: 20px;
-    background-color: rgba(0,0,0,.25);
+    margin-top: 10px;
+    background-color: rgba(0,0,0,.5);
 }
 
 .app-info .button img {
@@ -286,9 +357,8 @@ h1, p {
     width: 100%;
     height: 45vh;
     padding: 60px;
-    background-color: rgba(0,0,0,.75);
+    background-color: rgba(0,0,0,.85);
     overflow-y: scroll;
-    /* -webkit-backdrop-filter: blur(10px); */
 }
 
 .app-list-row {
@@ -379,7 +449,7 @@ h1, p {
 
 .popup-message-container.active {
     opacity: 1;
-    pointer-events: all;
+    pointer-events: auto;
 }
 
 .popup-message-container.active .popup-message {
@@ -427,6 +497,12 @@ h1, p {
     text-decoration: none;
     user-select: none;
     transition: .25s all;
+}
+
+.button-small {
+    padding: 10px 30px;
+    font-size: 20px;
+    text-transform: uppercase;
 }
 
 .button:hover {
