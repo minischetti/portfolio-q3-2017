@@ -158,22 +158,15 @@ class Bio extends React.Component {
         );
         return (
             <div className={`bio${this.props.showBio ? " active" : ""}`}>
-                <h1>Dominic Minischetti</h1>
-                <img className="expanded-app-logo" src={bio.altLogo} />
-                <div className="expanded-app-content">
-                    <div className="side-bar">
-                        <span className="label">Role</span>
-                        <span>{bio.role}</span>
-                        <span className="label">Skills</span>
-                        {skills}
-                    </div>
-                    <div className="app-info">
-                        <div className="location-and-duration">
-                            <span className="label">Location</span>
-                            <span>{bio.location}</span>
-                        </div>
-                        <p>{bio.description}</p>
-                    </div>
+                <div className="bio-content">
+                    {/* <h1>Dominic Minischetti</h1>
+                    <span className="bio-subheader">Front-end Engineer <span className="reset-font">for</span> Williams-Sonoma, Inc. <span className="reset-font">in</span> California</span> */}
+                {/* <div className="bio-skills">
+                    <span className="label">Skills</span>
+                    {skills}
+                </div> */}
+                {/* <p>{bio.description}</p> */}
+                <p><b>Dominic Minischetti</b> is a <b>Front-end Engineer</b> for <b>Williams-Sonoma, Inc.</b> in <b>California</b>. He strives to achieve the perfect blend of form and function in everything he does, and has much love for <b>design</b>, <b>typography</b> and <b>animation</b>. If he's not in front of a computer, you'll likely find him <b>guitar</b> in-hand, writing a new song with the dream of propelling himself to <b>rockstar status.</b></p>
                 </div>
             </div>
         )
@@ -194,18 +187,14 @@ class ExpandedApp extends React.Component {
                     <div className="side-bar">
                         <span className="label">Position</span>
                         <span>{selectedApp.position}</span>
+                        <span className="label">Duration</span>
+                        <span>{selectedApp.duration}</span>
                         <span className="label">Technology</span>
                         {technology}
                     </div>
                     <div className="app-info">
-                        <div className="location-and-duration">
-                            <span className="label">Location</span>
-                            <span>{selectedApp.location}</span>
-                            <span className="label">Duration</span>
-                            <span>{selectedApp.duration}</span>
-                        </div>
                         <p>{selectedApp.description}</p>
-                        <div className="button button-small" onClick={() => this.props.updateMessageState(destination)}>View Website</div>
+                        <div className="button button-round" onClick={() => this.props.updateMessageState(destination)}>Go</div>
                     </div>
                 </div>
             </div>
@@ -288,8 +277,8 @@ class PopupMessage extends React.Component {
                     <div className="popup-message-content">
                         <div className="popup-description">You're about to open a new tab! Would you like to continue?</div>
                         <div className="button-container">
-                            <span className="button" tabIndex="0" onClick={this.props.handleMessageVisibility}>Return</span>
-                            <a className="button" href={this.props.destination} target="_blank" onClick={this.props.handleMessageVisibility}>Proceed</a>
+                            <span className="button button-square" tabIndex="0" onClick={this.props.handleMessageVisibility}>Return</span>
+                            <a className="button button-square" href={this.props.destination} target="_blank" onClick={this.props.handleMessageVisibility}>Proceed</a>
                         </div>
                     </div>
                 </div>

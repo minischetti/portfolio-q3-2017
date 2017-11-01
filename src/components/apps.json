@@ -28,9 +28,9 @@
             "destination": "https://www.williams-sonoma.com",
             "position": "Front-end Engineer",
             "technology": [
-                "HTML + Freemarker",
-                "CSS + SASS",
-                "JavaScript",
+                "HTML5 + Freemarker",
+                "CSS3 + SASS",
+                "JavaScript (ES6)",
                 "Webpack",
                 "Java"
             ],
