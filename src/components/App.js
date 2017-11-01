@@ -158,6 +158,7 @@ class Bio extends React.Component {
         );
         return (
             <div className={`bio${this.props.showBio ? " active" : ""}`}>
+                <h1>Dominic Minischetti</h1>
                 <img className="expanded-app-logo" src={bio.altLogo} />
                 <div className="expanded-app-content">
                     <div className="side-bar">
