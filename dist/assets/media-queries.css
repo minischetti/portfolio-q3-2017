@@ -11,12 +11,9 @@
     }
 
     .expanded-app-logo {
-        height: 40px;
-        max-width: 100%;
-        padding-top: 0 !important;
-        padding-left: 10px;
-        padding-right: 60px;
-        margin: 10px 0;
+        width: 100%;
+        padding: 0 40px !important;
+        margin: 60px 0 20px;
     }
 
     .expanded-app-content {
@@ -26,13 +23,11 @@
     .app-info {
         width: 100%;
         margin: 0;
-        padding: 0 10px;
+        padding: 0 40px;
     }
 
     .app-info .button {
-        width: 100%;
-        display: block;
-        text-align: center;
+        margin: 20px auto 0;
     }
 
     .side-bar {
@@ -79,5 +74,28 @@
         width: 150px;
         height: 200px;
         flex-shrink: 0;
+    }
+
+    .popup-message-container.active .popup-message {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .popup-message {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        border-radius: 0;
+        transform: translateY(100%);
+    }
+
+    .popup-message-content .button-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .popup-message-content .button:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 10px;
     }
 }

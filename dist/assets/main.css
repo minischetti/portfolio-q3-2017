@@ -183,7 +183,7 @@ h1, p {
 .expanded-app-container {
     position: relative;
     width: 100%;
-    height: 55vh;
+    height: 50vh;
     color: white;
     will-change: transform;
     -webkit-transform-style: preserve-3d;
@@ -250,7 +250,7 @@ h1, p {
 }
 
 .upper-half-container {
-    height: 55vh;
+    height: 50vh;
 }
 
 .upper-half-image {
@@ -282,6 +282,7 @@ h1, p {
     text-align: right;
     width: 20%;
     height: 100%;
+    font-size: 18px;
 }
 
 .app-info {
@@ -306,7 +307,7 @@ h1, p {
 .app-list-container {
     position: relative;
     width: 100%;
-    height: 45vh;
+    height: 50vh;
     padding: 60px;
     background-color: rgba(0,0,0,.85);
     overflow-y: scroll;
@@ -392,7 +393,7 @@ h1, p {
     height: 100%;
     opacity: 0;
     background-color: rgba(0,0,0,.5);
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
     transition: .25s all;
 }
