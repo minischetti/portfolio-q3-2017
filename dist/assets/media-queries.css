@@ -8,6 +8,12 @@
 }
 
 @media screen and (max-width: 640px) {
+    /* .expanded-app-container, .upper-half {
+        height: 0;
+    }
+    .app-list-container, .bottom-half-container {
+        height: 100vh;
+    } */
     .bio {
         background-image: none;
         color: white;

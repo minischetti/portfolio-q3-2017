@@ -300,6 +300,13 @@ h1, p {
     display: block;
 }
 
+.read-more-button {
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-left: 10px;
+    opacity: .5;
+}
+
 .label {
     font-weight: bold;
     text-transform: uppercase;
@@ -309,7 +316,6 @@ h1, p {
     position: relative;
     width: 100%;
     height: 50vh;
-    /* padding: 60px; */
     background-color: rgba(0,0,0,.85);
     overflow-y: scroll;
     overflow-x: hidden;
@@ -320,10 +326,16 @@ h1, p {
     grid-auto-flow: column;
     grid-column-gap: 40px;
     width: 100%;
-    padding: 30px;
-    /* margin-bottom: 60px; */
+    padding: 60px;
     overflow-x: scroll;
     overflow-y: hidden;
+}
+
+.app-list-row:first-child {
+    padding-bottom: 30px;
+}
+.app-list-row:last-child {
+    padding-top: 30px;
 }
 
 .app-list-container::-webkit-scrollbar, .app-list-row::-webkit-scrollbar {

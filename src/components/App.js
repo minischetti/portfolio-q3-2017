@@ -192,8 +192,26 @@ class ExpandedApp extends React.Component {
         }
         this.setState({truncatedDescription: truncatedString});
     }
+
+    // componentDidMount() {
+    //     // media query event handler
+    // }
     componentDidMount() {
         this.truncateString(this.props.app.description);
+            const mq = window.matchMedia("(max-width: 640px)");
+            mq.addListener(widthChange);
+            widthChange(mq);
+    
+            // media query change
+            function widthChange(mq) {
+                if (mq.matches) {
+                    console.log("Yes");
+                } else {
+                    console.log("No");
+                }
+    
+            }
+        // console.log(window.matchMedia("(max-width: 640px)"));
     }
     toggleFullDescription() {
         this.setState({showFullDescription: !this.state.showFullDescription});
@@ -221,8 +239,7 @@ class ExpandedApp extends React.Component {
                         {technology}
                     </div>
                     <div className="app-info">
-                        <p>{showFullDescription ? `${originalDescription}` : `${truncatedDescription}` }</p>
-                        {showReadMoreButton && <span onClick={() => this.toggleFullDescription()}>{showFullDescription ? "Read Less" : "Read More"}</span>}
+                        <p>{showFullDescription ? `${originalDescription}` : `${truncatedDescription}`}{showReadMoreButton && <span className="read-more-button" onClick={() => this.toggleFullDescription()}>{showFullDescription ? "Less" : "More"}</span>}</p>
                         <div className="button button-round" onClick={() => this.props.updateMessageState(destination)}>Go</div>
                     </div>
                 </div>
