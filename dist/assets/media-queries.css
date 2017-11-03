@@ -1,19 +1,39 @@
+@media screen and (max-width: 1024px) {
+    .expanded-app-content {
+        padding: 0 30px;
+    }
+    .app-info {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 640px) {
+    .bio {
+        background-image: none;
+        color: white;
+    }
+
     .bio-switch-container {
         top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        transform: translateX(-50%);
+    }
+
+    .bio-content {
+        margin: auto 30px;
     }
 
     .expanded-app-logo {
         width: 100%;
-        padding: 0 40px !important;
-        margin: 60px 0 20px;
+        padding: 0 40px;
+        margin: 80px 0 10px;
     }
 
     .expanded-app-content {
         flex-direction: column;
+        padding: 0;
     }
 
     .app-info {
@@ -65,8 +85,8 @@
     }
 
     .app {
-        width: 150px;
-        height: 200px;
+        width: 140px;
+        height: 180px;
         flex-shrink: 0;
     }
 
@@ -75,6 +95,10 @@
         transform: translateY(0);
     }
 
+    .popup-message-container.active, .popup-message-container.active .popup-message {
+        transition: .75s all cubic-bezier(1,-.20,.20,1);
+    }
+    
     .popup-message {
         position: absolute;
         bottom: 0;

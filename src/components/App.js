@@ -174,8 +174,36 @@ class Bio extends React.Component {
 }
 
 class ExpandedApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.truncateString = this.truncateString.bind(this);
+        this.toggleFullDescription = this.toggleFullDescription.bind(this);
+        this.state = { originalDescription: this.props.app.description, truncatedDescription: "", showFullDescription: false, showReadMoreButton: false }
+    }
+    truncateString(string) {
+        const originalString = string;
+        const characterLimit = 300;
+        let truncatedString;
+        if (originalString.length > characterLimit) {
+            truncatedString = originalString.substr(0, characterLimit) + "...";
+            this.setState({showReadMoreButton: true});
+        } else {
+            truncatedString = originalString;
+        }
+        this.setState({truncatedDescription: truncatedString});
+    }
+    componentDidMount() {
+        this.truncateString(this.props.app.description);
+    }
+    toggleFullDescription() {
+        this.setState({showFullDescription: !this.state.showFullDescription});
+    }
     render() {
         const selectedApp = this.props.app;
+        const originalDescription = this.state.originalDescription;
+        const truncatedDescription = this.state.truncatedDescription;
+        const showFullDescription = this.state.showFullDescription;
+        const showReadMoreButton = this.state.showReadMoreButton;
         const destination = selectedApp.destination;
         const technology = selectedApp.technology.map((technology) =>
             <span key={technology}>{technology}</span>
@@ -193,7 +221,8 @@ class ExpandedApp extends React.Component {
                         {technology}
                     </div>
                     <div className="app-info">
-                        <p>{selectedApp.description}</p>
+                        <p>{showFullDescription ? `${originalDescription}` : `${truncatedDescription}` }</p>
+                        {showReadMoreButton && <span onClick={() => this.toggleFullDescription()}>{showFullDescription ? "Read Less" : "Read More"}</span>}
                         <div className="button button-round" onClick={() => this.props.updateMessageState(destination)}>Go</div>
                     </div>
                 </div>

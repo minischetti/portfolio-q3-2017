@@ -76,6 +76,7 @@ h1, p {
     right: 30px;
     width: 60px;
     height: 60px;
+    z-index: 1;
 }
 
 .bio-switch {
@@ -85,7 +86,6 @@ h1, p {
     position: relative;
     width: 100%;
     height: 100%;
-    z-index: 1;
     border-radius: 50%;
     overflow: hidden;
     background-color: rgba(0,0,0,.15);
