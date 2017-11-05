@@ -274,7 +274,8 @@ h1, p {
 }
 
 .expanded-app.williams-sonoma .expanded-app-logo, .expanded-app.metro-for-steam .expanded-app-logo {
-    padding: 15px 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .side-bar {

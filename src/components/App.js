@@ -176,13 +176,14 @@ class Bio extends React.Component {
 class ExpandedApp extends React.Component {
     constructor(props) {
         super(props);
+        this.widthChange = this.widthChange.bind(this);
         this.truncateString = this.truncateString.bind(this);
         this.toggleFullDescription = this.toggleFullDescription.bind(this);
         this.state = { originalDescription: this.props.app.description, truncatedDescription: "", showFullDescription: false, showReadMoreButton: false }
     }
     truncateString(string) {
         const originalString = string;
-        const characterLimit = 300;
+        const characterLimit = 150;
         let truncatedString;
         if (originalString.length > characterLimit) {
             truncatedString = originalString.substr(0, characterLimit) + "...";
@@ -196,22 +197,19 @@ class ExpandedApp extends React.Component {
     // componentDidMount() {
     //     // media query event handler
     // }
+    widthChange(mq) {
+        if (mq.matches) {
+            this.truncateString(this.props.app.description);
+            console.log("Yes");
+        } else {
+            this.setState({showFullDescription: true});
+            console.log("No");
+        }
+    }
     componentDidMount() {
-        this.truncateString(this.props.app.description);
-            const mq = window.matchMedia("(max-width: 640px)");
-            mq.addListener(widthChange);
-            widthChange(mq);
-    
-            // media query change
-            function widthChange(mq) {
-                if (mq.matches) {
-                    console.log("Yes");
-                } else {
-                    console.log("No");
-                }
-    
-            }
-        // console.log(window.matchMedia("(max-width: 640px)"));
+        const mq = window.matchMedia("(max-width: 640px)");
+        mq.addListener(this.widthChange);
+        this.widthChange(mq);
     }
     toggleFullDescription() {
         this.setState({showFullDescription: !this.state.showFullDescription});

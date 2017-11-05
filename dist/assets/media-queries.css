@@ -8,12 +8,12 @@
 }
 
 @media screen and (max-width: 640px) {
-    /* .expanded-app-container, .upper-half {
-        height: 0;
+    .expanded-app-container, .upper-half-container {
+        height: 60vh;
     }
-    .app-list-container, .bottom-half-container {
-        height: 100vh;
-    } */
+    .app-list-container {
+        height: 40vh;
+    }
     .bio {
         background-image: none;
         color: white;
@@ -31,9 +31,15 @@
         margin: auto 30px;
     }
 
+    .expanded-app.williams-sonoma .expanded-app-logo, .expanded-app.metro-for-steam .expanded-app-logo {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
     .expanded-app-logo {
         width: 100%;
-        padding: 0 40px;
+        height: 40px;
+        padding: 0 30px;
         margin: 80px 0 10px;
     }
 
@@ -45,7 +51,7 @@
     .app-info {
         width: 100%;
         margin: 0;
-        padding: 0 40px;
+        padding: 0 30px;
     }
 
     .app-info .button {
