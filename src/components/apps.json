@@ -36,7 +36,7 @@
             ],
             "location": "California",
             "duration": "April 2017 - Present",
-            "description": "Bear witness to the adventures of a front-end engineer on an agile-driven team that creates and supports an expansive, multi-brand e-commerce platform! At the heart, we follow Dom as he collaborates with back-end and design teams to develop new initiatives utilizing core web technologies... but there's much more to this position than meets the eye! Tales of Java development, unit tests, SVN, Git and more hide within!",
+            "description": "Acts as a front-end engineer on an agile-driven team that creates and supports an expansive, multi-brand e-commerce platform. Collaborates with back-end and design teams to develop new initiatives utilizing core web technologies, Java and unit tests in SVN and Git workflows.",
             "color": "#0A0A0A",
             "xPos": "0%"
         },
@@ -54,7 +54,7 @@
             ],
             "location": "Florida",
             "duration": "April 2015 - March 2016",
-            "description": "Who would've thought he'd be designing and developing marketing initiatives for some of the nation's most well-respected universities? Or ensuring the invitations and table placeholders are print-ready and nothing short of perfect for the company's holiday party? Working so closely with print and illustrative experts is nothing short of inspiring, and some of that talent is eventually bound to rub off.",
+            "description": "Responsible for the design and development of internal and external marketing initiatives for nation-wide universities, including mobile and desktop websites and experiences. Worked extensively with other designers, developers, copywriters, stakeholders and the like to deliver impactful products.",
             "color": "#FFFFFF",
             "xPos": "-100%"
         }
@@ -74,7 +74,7 @@
             ],
             "location": "California",
             "duration": "March 2017 - Present",
-            "description": "Do you play Overwatch? Perhaps... but has your fate been revealed? Fortunes by Athena is a magic 8-ball style performance prediction app based on the competitive shooter's cast of characters and fantastical abilities. Features feedback-based audio with the Web Audio API, CSS animations and a keyboard control scheme mimic the experience of using a desktop app.",
+            "description": "Fortunes by Athena is a magic 8-ball style performance prediction app based on Overwatch, a competitive shooter with a cast of characters and fantastical abilities. Features feedback-based audio with the Web Audio API, CSS animations and a keyboard control scheme mimic the experience of using a desktop app.",
             "color": "#FFFFFF",
             "xPos": "-200%"
         },

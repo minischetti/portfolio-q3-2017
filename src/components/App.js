@@ -166,7 +166,7 @@ class Bio extends React.Component {
                     {skills}
                 </div> */}
                 {/* <p>{bio.description}</p> */}
-                <p><b>Dominic Minischetti</b> is a <b>Front-end Engineer</b> for <b>Williams-Sonoma, Inc.</b> in <b>California</b>. He strives to achieve the perfect blend of form and function, and has much love for <b>design</b>, <b>typography</b> and <b>animation</b>. If he's not in front of a computer, you'll likely find him <b>guitar</b> in-hand, writing a new song with the dream of propelling himself to <b>rockstar status.</b></p>
+                <p><b>Dominic Minischetti</b> is a <b>Front-end Engineer</b> for <b>Williams-Sonoma, Inc.</b> in <b>California</b>. He strives to achieve the perfect blend of form and function, and has much love for <b>programming</b>, <b>design</b> and <b>animation</b>. If he's not in front of a computer, you'll likely find him <b>guitar</b> in-hand, writing a new song with the dream of propelling himself to <b>rockstar status.</b></p>
                 </div>
             </div>
         )
