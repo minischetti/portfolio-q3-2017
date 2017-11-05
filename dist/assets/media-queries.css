@@ -68,7 +68,7 @@
     }
 
     .app-list-container {
-        /* padding: 30px 0; */
+        padding: 30px 0;
         flex-direction: column;
         overflow-x: hidden;
     }
@@ -76,23 +76,29 @@
     .app-list-row {
         justify-content: normal;
         margin-bottom: 0;
+        padding: 0;
+        grid-auto-flow: initial;
     }
 
-    .app-list-row:first-child {
-        flex-direction: column;
+    .app-list-row:first-child, .app-list-row:last-child {
+        padding: 0;
     }
 
     .app-list-section {
-        /* padding: 0 30px; */
+        padding: 0 30px 30px;
+    }
+
+    .app-list-row:last-child .app-list-section {
+        padding-bottom: 0;
     }
 
     .app-list {
-        justify-content: space-between;
+        justify-content: center;
+        grid-column-gap: 30px;
     }
 
     .app {
-        width: 140px;
-        height: 180px;
+        width: calc(50vw - 45px);
         flex-shrink: 0;
     }
 
