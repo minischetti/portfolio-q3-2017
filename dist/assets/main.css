@@ -138,7 +138,6 @@ h1, p {
     background-color: black;
     color: black;
     transform: translateY(-100%);
-    background-color: black;
     background-image: url("backgrounds/bio.jpg");
     background-size: cover;
     background-position: right;
@@ -320,6 +319,7 @@ h1, p {
     background-color: rgba(0,0,0,.85);
     overflow-y: scroll;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 .app-list-row {
@@ -330,6 +330,7 @@ h1, p {
     padding: 60px;
     overflow-x: scroll;
     overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 .app-list-row:first-child {
@@ -420,6 +421,7 @@ h1, p {
     z-index: 2;
     pointer-events: none;
     transition: .25s all;
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .popup-message-container.active {

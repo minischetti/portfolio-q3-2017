@@ -181,6 +181,7 @@ class ExpandedApp extends React.Component {
         this.toggleFullDescription = this.toggleFullDescription.bind(this);
         this.state = { originalDescription: this.props.app.description, truncatedDescription: "", showFullDescription: false, showReadMoreButton: false }
     }
+
     truncateString(string) {
         const originalString = string;
         const characterLimit = 150;
@@ -194,26 +195,25 @@ class ExpandedApp extends React.Component {
         this.setState({truncatedDescription: truncatedString});
     }
 
-    // componentDidMount() {
-    //     // media query event handler
-    // }
     widthChange(mq) {
         if (mq.matches) {
             this.truncateString(this.props.app.description);
-            console.log("Yes");
+            this.setState({showFullDescription: false});
         } else {
-            this.setState({showFullDescription: true});
-            console.log("No");
+            this.setState({showFullDescription: true, showReadMoreButton: false});
         }
     }
+
     componentDidMount() {
-        const mq = window.matchMedia("(max-width: 640px)");
+        const mq = window.matchMedia("(max-width: 740px)");
         mq.addListener(this.widthChange);
         this.widthChange(mq);
     }
+
     toggleFullDescription() {
         this.setState({showFullDescription: !this.state.showFullDescription});
     }
+
     render() {
         const selectedApp = this.props.app;
         const originalDescription = this.state.originalDescription;
@@ -238,7 +238,7 @@ class ExpandedApp extends React.Component {
                     </div>
                     <div className="app-info">
                         <p>{showFullDescription ? `${originalDescription}` : `${truncatedDescription}`}{showReadMoreButton && <span className="read-more-button" onClick={() => this.toggleFullDescription()}>{showFullDescription ? "Less" : "More"}</span>}</p>
-                        <div className="button button-round" onClick={() => this.props.updateMessageState(destination)}>Go</div>
+                        <div className="button button-round visit-website-button" onClick={() => this.props.updateMessageState(destination)}>Go</div>
                     </div>
                 </div>
             </div>

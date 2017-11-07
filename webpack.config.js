@@ -1,11 +1,12 @@
 var webpack = require("webpack");
+const path = require('path');
 
 module.exports = {
 	entry: "./src/index.js",
 	output: {
-		path: "/dist/assets/",
+        path: path.resolve(__dirname, 'dist'),
 		filename: "bundle.js",
-		publicPath: "assets"
+		// publicPath: "assets"
 	},
 	devServer: {
 		inline: true,
@@ -15,14 +16,14 @@ module.exports = {
     module: {
     rules: [
         {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-            loader: 'babel-loader',
-            options: {
-            presets: ['es2015', 'react', 'stage-0']
+            test: /\.js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                presets: ['es2015', 'react', 'stage-0']
+                }
             }
-        }
         }
     ]
     }

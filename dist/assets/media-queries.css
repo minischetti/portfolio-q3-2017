@@ -7,12 +7,12 @@
     }
 }
 
-@media screen and (max-width: 640px) {
-    .expanded-app-container, .upper-half-container {
-        height: 60vh;
+@media screen and (max-width: 740px) {
+    .visit-website-button {
+        display: none;
     }
-    .app-list-container {
-        height: 40vh;
+    .loading-screen-logo {
+        transform: scale(.5);
     }
     .bio {
         background-image: none;
@@ -48,10 +48,15 @@
         padding: 0;
     }
 
+    .expanded-app {
+        background-color: rgba(0,0,0,.75);
+    }
+
     .app-info {
         width: 100%;
         margin: 0;
         padding: 0 30px;
+        font-size: 16px;
     }
 
     .app-info .button {
@@ -74,7 +79,6 @@
     }
 
     .app-list-container {
-        padding: 30px 0;
         flex-direction: column;
         overflow-x: hidden;
     }
@@ -94,8 +98,8 @@
         padding: 0 30px 30px;
     }
 
-    .app-list-row:last-child .app-list-section {
-        padding-bottom: 0;
+    .app-list-row:first-child .app-list-section {
+        padding-top: 30px;
     }
 
     .app-list {
@@ -137,5 +141,9 @@
 
     .category-title {
         font-size: 24px;
+    }
+
+    .upper-half-container, .bottom-half-container, .upper-half-image {
+        background-position: 82%;
     }
 }
