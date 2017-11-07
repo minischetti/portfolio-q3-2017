@@ -4,13 +4,14 @@ import apps from './apps.json'
 class Portfolio extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { selectedApp: apps.professional[0], showLoadingScreen: true, showMessage: false, showBio: false, externalLink: "" };
+        this.state = { selectedApp: apps.professional[0], showLoadingScreen: true, showMessage: false, showBio: false, externalLink: "", isMobile: false };
         this.updateSelectedApp = this.updateSelectedApp.bind(this);
         this.updateMessageState = this.updateMessageState.bind(this);
         this.handleMessageVisibility = this.handleMessageVisibility.bind(this);
         this.handleBioVisibility = this.handleBioVisibility.bind(this);
         this.animateApps = this.animateApps.bind(this);
         this.fetchAsset = this.fetchAsset.bind(this);
+        this.widthChange = this.widthChange.bind(this);
         this.generatePortfolioClasses = this.generatePortfolioClasses.bind(this);
     }
 
@@ -31,8 +32,19 @@ class Portfolio extends React.Component {
             delay = delay + .1;
         });
     }
-    
+
+    widthChange(mq) {
+        if (mq.matches) {
+            this.setState({ isMobile: true });
+        } else {
+            this.setState({ isMobile: false });
+        }
+    }
+
     componentDidMount() {
+        const mq = window.matchMedia("(max-width: 740px)");
+        mq.addListener(this.widthChange);
+        this.widthChange(mq);
         setTimeout(() => {
             this.setState({showLoadingScreen: false});
         }, 1000);
@@ -83,11 +95,12 @@ class Portfolio extends React.Component {
         const showBio = this.state.showBio;
         const showMessage = this.state.showMessage;
         const destination = this.state.externalLink;
+        const isMobile = this.state.isMobile;
         const professionalApps = apps.professional.map((app) =>
-            <ExpandedApp key={app.id} app={app} updateMessageState={this.updateMessageState} fetchAsset={this.fetchAsset}/>
+            <ExpandedApp key={app.id} app={app} updateMessageState={this.updateMessageState} fetchAsset={this.fetchAsset} isMobile={isMobile}/>
         );
         const personalApps = apps.personal.map((app) =>
-            <ExpandedApp key={app.id} app={app} updateMessageState={this.updateMessageState} fetchAsset={this.fetchAsset}/>
+            <ExpandedApp key={app.id} app={app} updateMessageState={this.updateMessageState} fetchAsset={this.fetchAsset} isMobile={isMobile}/>
         );
         const bio = apps.bio.map((app) =>
             <Bio key={app.id} app={app}/>
@@ -176,10 +189,13 @@ class Bio extends React.Component {
 class ExpandedApp extends React.Component {
     constructor(props) {
         super(props);
-        this.widthChange = this.widthChange.bind(this);
         this.truncateString = this.truncateString.bind(this);
         this.toggleFullDescription = this.toggleFullDescription.bind(this);
         this.state = { originalDescription: this.props.app.description, truncatedDescription: "", showFullDescription: false, showReadMoreButton: false }
+    }
+
+    componentDidMount() {
+        this.truncateString(this.props.app.description);
     }
 
     truncateString(string) {
@@ -195,21 +211,6 @@ class ExpandedApp extends React.Component {
         this.setState({truncatedDescription: truncatedString});
     }
 
-    widthChange(mq) {
-        if (mq.matches) {
-            this.truncateString(this.props.app.description);
-            this.setState({showFullDescription: false});
-        } else {
-            this.setState({showFullDescription: true, showReadMoreButton: false});
-        }
-    }
-
-    componentDidMount() {
-        const mq = window.matchMedia("(max-width: 740px)");
-        mq.addListener(this.widthChange);
-        this.widthChange(mq);
-    }
-
     toggleFullDescription() {
         this.setState({showFullDescription: !this.state.showFullDescription});
     }
@@ -219,6 +220,7 @@ class ExpandedApp extends React.Component {
         const originalDescription = this.state.originalDescription;
         const truncatedDescription = this.state.truncatedDescription;
         const showFullDescription = this.state.showFullDescription;
+        const isMobile = this.props.isMobile;
         const showReadMoreButton = this.state.showReadMoreButton;
         const destination = selectedApp.destination;
         const technology = selectedApp.technology.map((technology) =>

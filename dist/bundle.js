@@ -22438,13 +22438,14 @@ var Portfolio = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Portfolio.__proto__ || Object.getPrototypeOf(Portfolio)).call(this, props));
 
-        _this.state = { selectedApp: _apps2.default.professional[0], showLoadingScreen: true, showMessage: false, showBio: false, externalLink: "" };
+        _this.state = { selectedApp: _apps2.default.professional[0], showLoadingScreen: true, showMessage: false, showBio: false, externalLink: "", isMobile: false };
         _this.updateSelectedApp = _this.updateSelectedApp.bind(_this);
         _this.updateMessageState = _this.updateMessageState.bind(_this);
         _this.handleMessageVisibility = _this.handleMessageVisibility.bind(_this);
         _this.handleBioVisibility = _this.handleBioVisibility.bind(_this);
         _this.animateApps = _this.animateApps.bind(_this);
         _this.fetchAsset = _this.fetchAsset.bind(_this);
+        _this.widthChange = _this.widthChange.bind(_this);
         _this.generatePortfolioClasses = _this.generatePortfolioClasses.bind(_this);
         return _this;
     }
@@ -22470,10 +22471,22 @@ var Portfolio = function (_React$Component) {
             });
         }
     }, {
+        key: 'widthChange',
+        value: function widthChange(mq) {
+            if (mq.matches) {
+                this.setState({ isMobile: true });
+            } else {
+                this.setState({ isMobile: false });
+            }
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
 
+            var mq = window.matchMedia("(max-width: 740px)");
+            mq.addListener(this.widthChange);
+            this.widthChange(mq);
             setTimeout(function () {
                 _this2.setState({ showLoadingScreen: false });
             }, 1000);
@@ -22533,11 +22546,12 @@ var Portfolio = function (_React$Component) {
             var showBio = this.state.showBio;
             var showMessage = this.state.showMessage;
             var destination = this.state.externalLink;
+            var isMobile = this.state.isMobile;
             var professionalApps = _apps2.default.professional.map(function (app) {
-                return _react2.default.createElement(ExpandedApp, { key: app.id, app: app, updateMessageState: _this3.updateMessageState, fetchAsset: _this3.fetchAsset });
+                return _react2.default.createElement(ExpandedApp, { key: app.id, app: app, updateMessageState: _this3.updateMessageState, fetchAsset: _this3.fetchAsset, isMobile: isMobile });
             });
             var personalApps = _apps2.default.personal.map(function (app) {
-                return _react2.default.createElement(ExpandedApp, { key: app.id, app: app, updateMessageState: _this3.updateMessageState, fetchAsset: _this3.fetchAsset });
+                return _react2.default.createElement(ExpandedApp, { key: app.id, app: app, updateMessageState: _this3.updateMessageState, fetchAsset: _this3.fetchAsset, isMobile: isMobile });
             });
             var bio = _apps2.default.bio.map(function (app) {
                 return _react2.default.createElement(Bio, { key: app.id, app: app });
@@ -22740,7 +22754,6 @@ var ExpandedApp = function (_React$Component5) {
 
         var _this7 = _possibleConstructorReturn(this, (ExpandedApp.__proto__ || Object.getPrototypeOf(ExpandedApp)).call(this, props));
 
-        _this7.widthChange = _this7.widthChange.bind(_this7);
         _this7.truncateString = _this7.truncateString.bind(_this7);
         _this7.toggleFullDescription = _this7.toggleFullDescription.bind(_this7);
         _this7.state = { originalDescription: _this7.props.app.description, truncatedDescription: "", showFullDescription: false, showReadMoreButton: false };
@@ -22748,6 +22761,11 @@ var ExpandedApp = function (_React$Component5) {
     }
 
     _createClass(ExpandedApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.truncateString(this.props.app.description);
+        }
+    }, {
         key: 'truncateString',
         value: function truncateString(string) {
             var originalString = string;
@@ -22760,23 +22778,6 @@ var ExpandedApp = function (_React$Component5) {
                 truncatedString = originalString;
             }
             this.setState({ truncatedDescription: truncatedString });
-        }
-    }, {
-        key: 'widthChange',
-        value: function widthChange(mq) {
-            if (mq.matches) {
-                this.truncateString(this.props.app.description);
-                this.setState({ showFullDescription: false });
-            } else {
-                this.setState({ showFullDescription: true, showReadMoreButton: false });
-            }
-        }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var mq = window.matchMedia("(max-width: 740px)");
-            mq.addListener(this.widthChange);
-            this.widthChange(mq);
         }
     }, {
         key: 'toggleFullDescription',
@@ -22792,6 +22793,7 @@ var ExpandedApp = function (_React$Component5) {
             var originalDescription = this.state.originalDescription;
             var truncatedDescription = this.state.truncatedDescription;
             var showFullDescription = this.state.showFullDescription;
+            var isMobile = this.props.isMobile;
             var showReadMoreButton = this.state.showReadMoreButton;
             var destination = selectedApp.destination;
             var technology = selectedApp.technology.map(function (technology) {
@@ -22855,7 +22857,7 @@ var ExpandedApp = function (_React$Component5) {
                         ),
                         _react2.default.createElement(
                             'div',
-                            { className: 'button button-round', onClick: function onClick() {
+                            { className: 'button button-round visit-website-button', onClick: function onClick() {
                                     return _this8.props.updateMessageState(destination);
                                 } },
                             'Go'

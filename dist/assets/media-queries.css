@@ -64,18 +64,20 @@
     }
 
     .side-bar {
+        padding: 15px;
         flex-direction: row;
         width: 100%;
-        overflow: scroll;
-    }
-
-    .side-bar {
-        display: none;
+        height: auto;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        text-align: left;
         font-size: 14px;
     }
 
     .side-bar span {
-        flex: 1;
+        flex-shrink: 0;
+        padding-right: 10px;
     }
 
     .app-list-container {
@@ -98,7 +100,7 @@
         padding: 0 30px 30px;
     }
 
-    .app-list-row:first-child .app-list-section {
+    .app-list-row:first-child .app-list-section:first-child {
         padding-top: 30px;
     }
 
@@ -145,5 +147,53 @@
 
     .upper-half-container, .bottom-half-container, .upper-half-image {
         background-position: 82%;
+    }
+}
+
+@media screen and (max-width: 740px) and (orientation: portrait) {
+    .side-bar {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        border-top: 1px solid rgba(255,255,255,.25);
+    }
+}
+
+@media screen and (max-width: 740px) and (orientation: landscape) {
+    .side-bar {
+        border-bottom: 1px solid rgba(255,255,255,.25);
+    }
+    .bio-switch-container {
+        left: auto;
+        right: 25vw;
+        transform: translateX(50%);
+    }
+    .portfolio {
+        display: flex;
+    }
+    .expanded-app {
+        overflow: hidden;
+    }
+    .expanded-app-logo {
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    .expanded-app-container, .app-list-container {
+        width: 50vw;
+        height: 100vh;
+    }
+    .app-list-container {
+        padding-top: 80px;
+        background-color: black;
+        border-left: 1px solid rgba(255,255,255,.25);
+    }
+    .app {
+        width: calc(25vw - 45px);
+    }
+    .app-info {
+        padding-top: 20px;
+    }
+    .background-image-carousel {
+        display: none;
     }
 }
