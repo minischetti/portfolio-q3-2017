@@ -29,12 +29,10 @@ h1, p
     height: 100%
     overflow: hidden
     transform: scale(1)
-
-.portfolio.loading-screen-visible
-    transform: scale(.75)
-
-.portfolio.bio-visible
-    transform: translateY(100%)
+    &.loading-screen-visible
+        transform: scale(.75)
+    &.bio-visible
+        transform: translateY(100%)
 
 .loading-screen
     display: flex
@@ -49,11 +47,10 @@ h1, p
     transform: scale(2)
     pointer-events: none
     user-select: none
-
-.loading-screen.active
-    opacity: 1
-    transform: scale(1)
-    pointer-events: auto
+    &.active
+        opacity: 1
+        transform: scale(1)
+        pointer-events: auto
 
 .loading-screen-logo
     margin: auto
@@ -78,36 +75,31 @@ h1, p
     background-color: rgba(0,0,0,.15)
     cursor: pointer
     transition: .25s all
-
-.bio-switch:hover
-    box-shadow: 0 0 20px rgba(0,0,0,.25)
-    transform: scale(1.1)
-
-.bio-switch::before, .bio-switch::after
-    content: ""
-    position: absolute
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
-
-.bio-switch::before
-    background-image: url(logos/me.jpg)
-    background-size: cover
-    border-radius: 50%
-
-.bio-switch::after
-    background-image: url(logos/arrow.svg)
-    background-repeat: no-repeat
-    background-position: center
-    background-size: 14px
-    transform: translateY(-100%) rotateZ(-90deg)
-
-.bio-switch.bio-visible::before
-    transform: translateY(100%)
-
-.bio-switch.bio-visible::after
-    transform: translateY(0) rotateZ(-90deg)
+    &:hover
+        box-shadow: 0 0 20px rgba(0,0,0,.25)
+        transform: scale(1.1)
+    &::before, &::after
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+    &::before
+        background-image: url(logos/me.jpg)
+        background-size: cover
+        border-radius: 50%
+    &::after
+        background-image: url(logos/arrow.svg)
+        background-repeat: no-repeat
+        background-position: center
+        background-size: 14px
+        transform: translateY(-100%) rotateZ(-90deg)
+    &.bio-visible
+        &::before
+            transform: translateY(100%)
+        &::after
+            transform: translateY(0) rotateZ(-90deg)
 
 .bio
     display: flex
@@ -123,35 +115,14 @@ h1, p
     background-image: url("backgrounds/bio.jpg")
     background-size: cover
     background-position: right
+    &.active
+        transform: translateY(0)
+    b
+        font-family: "Crimson Text", serif
+        font-size: 23px
 
 .bio-content
     margin: auto 40% auto 5%
-
-.bio h1
-    margin-top: 40px
-    font-size: 96px
-    line-height: 1
-    width: 100%
-
-.bio-subheader
-    display: block
-    margin-bottom: 10px
-    text-transform: uppercase
-    font-weight: bold
-    letter-spacing: .5px
-
-.bio-subheader .reset-font
-    font-weight: normal
-
-.bio b
-    font-family: "Crimson Text"
-    font-size: 23px
-
-.bio-skills span
-    margin-right: 20px
-
-.bio.active
-    transform: translateY(0)
 
 .expanded-app-container
     position: relative
@@ -175,9 +146,8 @@ h1, p
     -webkit-transform-style: preserve-3d
     -webkit-backface-visibility: hidden
     backface-visibility: hidden
-
-.background-image-carousel.blurred
-    filter: blur(10px)
+    &.blurred
+        filter: blur(10px)
 
 .background-image-container
     position: absolute
@@ -196,15 +166,20 @@ h1, p
     overflow: hidden
     background-color: rgba(0,0,0,.65)
     z-index: 1
+    &.williams-sonoma, &.metro-for-steam
+        .expanded-app-logo
+            padding-top: 15px
+            padding-bottom: 15px
 
-.expanded-app:nth-child(2), .background-image-container:nth-child(2)
-    transform: translate3d(100%, 0px, 0px)
-
-.expanded-app:nth-child(3), .background-image-container:nth-child(3)
-    transform: translate3d(200%, 0px, 0px)
-
-.expanded-app:nth-child(4), .background-image-container:nth-child(4)
-    transform: translate3d(300%, 0px, 0px)
+.expanded-app, .background-image-container
+    &:nth-child(2)
+        transform: translate3d(100%, 0px, 0px)
+.expanded-app, .background-image-container
+    &:nth-child(3)
+        transform: translate3d(200%, 0px, 0px)
+.expanded-app, .background-image-container
+    &:nth-child(4)
+        transform: translate3d(300%, 0px, 0px)
 
 .upper-half-container, .bottom-half-container, .upper-half-image
     position: absolute
@@ -235,10 +210,6 @@ h1, p
     align-self: flex-start
     margin: 30px 0 30px calc(20% + 40px)
 
-.expanded-app.williams-sonoma .expanded-app-logo, .expanded-app.metro-for-steam .expanded-app-logo
-    padding-top: 15px
-    padding-bottom: 15px
-
 .side-bar
     display: flex
     flex-direction: column
@@ -251,12 +222,10 @@ h1, p
     margin-left: 40px
     width: 50%
     height: 100%
-
-.app-info .button
-    margin-top: 10px
-
-.app-info .button img
-    display: block
+    .button
+        margin-top: 10px
+        img
+            display: block
 
 .read-more-button
     cursor: pointer
@@ -286,15 +255,14 @@ h1, p
     overflow-x: scroll
     overflow-y: hidden
     -webkit-overflow-scrolling: touch
+    &:first-child
+        padding-bottom: 30px
+    &:last-child
+        padding-top: 30px
 
-.app-list-row:first-child
-    padding-bottom: 30px
-
-.app-list-row:last-child
-    padding-top: 30px
-
-.app-list-container::-webkit-scrollbar, .app-list-row::-webkit-scrollbar
-    display: none
+.app-list-container, .app-list-row
+    &::-webkit-scrollbar
+        display: none
 
 .app-list
     display: grid
@@ -318,10 +286,9 @@ h1, p
     transform-origin: bottom
     user-select: none
     -moz-user-select: none
-
-.app:hover
-    transform: scale(1.1)
-    box-shadow: inset 0 0 40px rgba(0,0,0,.25), 0 0 20px 10px rgba(0,0,0,.25)
+    &:hover
+        transform: scale(1.1)
+        box-shadow: inset 0 0 40px rgba(0,0,0,.25), 0 0 20px 10px rgba(0,0,0,.25)
 
 
 /* .app:hover .app-name
@@ -369,15 +336,12 @@ h1, p
     pointer-events: none
     transition: .25s all
     -webkit-backdrop-filter: blur(10px)
-
-.popup-message-container.active
-    opacity: 1
-    pointer-events: auto
-
-
-.popup-message-container.active .popup-message
-    opacity: 1
-    transform: scaleY(1)
+    &.active
+        opacity: 1
+        pointer-events: auto
+        .popup-message
+            opacity: 1
+            transform: scaleY(1)
 
 .popup-message
     display: flex
@@ -412,6 +376,12 @@ h1, p
     user-select: none
     transition: .25s all
     outline: none
+    &:hover
+        transform: scale(1.1)
+        box-shadow: inset 0 0 0 2px white, 0 0 10px rgba(0,0,0,.25)
+        outline: 0
+    &:not(:last-child)
+        margin-right: 10px
 
 .button-square
     background-color: rgba(255,255,255,.1)
@@ -428,10 +398,4 @@ h1, p
     line-height: 60px
     background-color: rgba(0,0,0,.25)
 
-.button:hover, .button-round:hover
-    transform: scale(1.1)
-    box-shadow: inset 0 0 0 2px white, 0 0 10px rgba(0,0,0,.25)
-    outline: 0
 
-.button:not(:last-child)
-    margin-right: 10px
