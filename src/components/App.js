@@ -5,21 +5,13 @@ class Portfolio extends React.Component {
     constructor(props) {
         super(props);
         this.state = { selectedApp: apps.professional[0], showLoadingScreen: true, showMessage: false, showBio: false, externalLink: "", isMobile: false };
-        this.updateSelectedApp = this.updateSelectedApp.bind(this);
-        this.updateMessageState = this.updateMessageState.bind(this);
-        this.handleMessageVisibility = this.handleMessageVisibility.bind(this);
-        this.handleBioVisibility = this.handleBioVisibility.bind(this);
-        this.animateApps = this.animateApps.bind(this);
-        this.fetchAsset = this.fetchAsset.bind(this);
-        this.widthChange = this.widthChange.bind(this);
-        this.generatePortfolioClasses = this.generatePortfolioClasses.bind(this);
     }
 
-    toggleLoadingScreen() {
+    toggleLoadingScreen = () => {
         this.setState({showLoadingScreen: !this.state.showLoadingScreen});
     }
 
-    animateApps() {
+    animateApps = () => {
         const apps = document.querySelectorAll(".app");
         const appLabels = document.querySelectorAll(".category-title");
         let delay = 1.5;
@@ -33,7 +25,7 @@ class Portfolio extends React.Component {
         });
     }
 
-    widthChange(mq) {
+    widthChange = (mq) => {
         if (mq.matches) {
             this.setState({ isMobile: true });
         } else {
@@ -51,23 +43,23 @@ class Portfolio extends React.Component {
         this.animateApps();
     }
 
-    updateSelectedApp(selectedApp) {
+    updateSelectedApp = (selectedApp) => {
         this.setState({selectedApp});
     }
 
-    updateMessageState(destination) {
+    updateMessageState = (destination) => {
         this.setState({showMessage: !this.state.showMessage, externalLink: destination});
     }
 
-    handleMessageVisibility() {
+    handleMessageVisibility = () => {
         this.setState({showMessage: !this.state.showMessage});
     }
 
-    handleBioVisibility() {
+    handleBioVisibility = () => {
         this.setState({ showBio: !this.state.showBio});
     }
 
-    fetchAsset(type, app) {
+    fetchAsset = (type, app) => {
         switch (type) {
             case "background":
                 return `assets/backgrounds/${app}.jpg`;
@@ -80,7 +72,7 @@ class Portfolio extends React.Component {
         }
     }
 
-    generatePortfolioClasses() {
+    generatePortfolioClasses = () => {
         if (this.state.showLoadingScreen) {
             return "loading-screen-visible";
         } else if (this.state.showBio) {
@@ -281,7 +273,6 @@ class AppList extends React.Component {
         )
     }
 }
-
 
 class App extends React.Component {
     determineAppType(appType) {
