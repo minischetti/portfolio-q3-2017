@@ -22,7 +22,7 @@ h1, p
     overflow: hidden
 
 .bio, .portfolio, .loading-screen, .expanded-app-container, .background-image-carousel, .bio-switch::before, .bio-switch::after
-    transition: .75s transform cubic-bezier(1,-.20,.20,1), .75s opacity cubic-bezier(1,-.20,.20,1)
+    transition: .75s transform $timing-function, .75s opacity $timing-function
 
 .portfolio
     width: 100%
@@ -37,10 +37,7 @@ h1, p
 .loading-screen
     display: flex
     position: fixed
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
+    +full-width
     background-color: black
     z-index: 2
     opacity: 0
@@ -64,7 +61,7 @@ h1, p
     z-index: 1
 
 .bio-switch
-    animation: .75s growIn cubic-bezier(1,-.20,.20,1)
+    animation: .75s growIn $timing-function
     animation-delay: 2.5s
     animation-fill-mode: backwards
     position: relative
@@ -81,10 +78,7 @@ h1, p
     &::before, &::after
         content: ""
         position: absolute
-        top: 0
-        left: 0
-        width: 100%
-        height: 100%
+        +full-width
     &::before
         background-image: url(logos/me.jpg)
         background-size: cover
@@ -102,13 +96,10 @@ h1, p
             transform: translateY(0) rotateZ(-90deg)
 
 .bio
+    position: absolute
+    +full-width
     display: flex
     flex-direction: column
-    position: absolute
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
     background-color: black
     color: black
     transform: translateY(-100%)
@@ -136,10 +127,7 @@ h1, p
 
 .background-image-carousel
     position: absolute
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
+    +full-width
     color: white
     will-change: transform
     z-index: -1
@@ -151,18 +139,12 @@ h1, p
 
 .background-image-container
     position: absolute
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
+    +full-width
     color: white
 
 .expanded-app
     position: absolute
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
+    +full-width
     overflow: hidden
     background-color: rgba(0,0,0,.65)
     z-index: 1
@@ -290,7 +272,6 @@ h1, p
         transform: scale(1.1)
         box-shadow: inset 0 0 40px rgba(0,0,0,.25), 0 0 20px 10px rgba(0,0,0,.25)
 
-
 /* .app:hover .app-name
     transform: translateY(150%)
     opacity: 1
@@ -326,10 +307,7 @@ h1, p
 .popup-message-container
     position: fixed
     display: flex
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
+    +full-width
     opacity: 0
     background-color: rgba(0,0,0,.5)
     z-index: 2

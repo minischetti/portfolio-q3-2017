@@ -7,10 +7,6 @@ class Portfolio extends React.Component {
         this.state = { selectedApp: apps.professional[0], showLoadingScreen: true, showMessage: false, showBio: false, externalLink: "", isMobile: false };
     }
 
-    toggleLoadingScreen = () => {
-        this.setState({showLoadingScreen: !this.state.showLoadingScreen});
-    }
-
     animateApps = () => {
         const apps = document.querySelectorAll(".app");
         const appLabels = document.querySelectorAll(".category-title");
@@ -74,11 +70,11 @@ class Portfolio extends React.Component {
 
     generatePortfolioClasses = () => {
         if (this.state.showLoadingScreen) {
-            return "loading-screen-visible";
+            return " loading-screen-visible";
         } else if (this.state.showBio) {
-            return "bio-visible"
+            return " bio-visible"
         }
-        return;
+        return "";
     }
 
     render() {
@@ -94,16 +90,10 @@ class Portfolio extends React.Component {
         const personalApps = apps.personal.map((app) =>
             <ExpandedApp key={app.id} app={app} updateMessageState={this.updateMessageState} fetchAsset={this.fetchAsset} isMobile={isMobile}/>
         );
-        const bio = apps.bio.map((app) =>
-            <Bio key={app.id} app={app}/>
-        );
         const professionalAppsBackground = apps.professional.map((app) =>
             <BackgroundImage key={app.id} app={app} selectedApp={selectedApp} fetchAsset={this.fetchAsset}/>
         );
         const personalAppsBackground = apps.personal.map((app) =>
-            <BackgroundImage key={app.id} app={app} selectedApp={selectedApp} fetchAsset={this.fetchAsset}/>
-        );
-        const bioBackground = apps.bio.map((app) =>
             <BackgroundImage key={app.id} app={app} selectedApp={selectedApp} fetchAsset={this.fetchAsset}/>
         );
         return (
@@ -113,7 +103,7 @@ class Portfolio extends React.Component {
                 <div className="bio-switch-container">
                     <div className={`bio-switch${showBio ? " bio-visible" : ""}`} onClick={() => this.handleBioVisibility()}></div>
                 </div>
-                <div id="portfolio" className={`portfolio ${this.generatePortfolioClasses()}`}>
+                <div id="portfolio" className={`portfolio${this.generatePortfolioClasses()}`}>
                     <div className="expanded-app-container" style={{ transform: `translateX(${selectedApp.xPos})` }}>
                         {professionalApps}
                         {personalApps}
@@ -157,10 +147,6 @@ class LoadingScreen extends React.Component {
 
 class Bio extends React.Component {
     render() {
-        const bio = apps.bio[0];
-        const skills = bio.skills.map((skills) =>
-            <span key={skills}>{skills}</span>
-        );
         return (
             <div className={`bio${this.props.showBio ? " active" : ""}`}>
                 <div className="bio-content">
@@ -174,8 +160,6 @@ class Bio extends React.Component {
 class ExpandedApp extends React.Component {
     constructor(props) {
         super(props);
-        this.truncateString = this.truncateString.bind(this);
-        this.toggleFullDescription = this.toggleFullDescription.bind(this);
         this.state = { originalDescription: this.props.app.description, truncatedDescription: "", showFullDescription: false, showReadMoreButton: false }
     }
 
@@ -183,7 +167,7 @@ class ExpandedApp extends React.Component {
         this.truncateString(this.props.app.description);
     }
 
-    truncateString(string) {
+    truncateString = (string) => {
         const originalString = string;
         const characterLimit = 150;
         let truncatedString;
@@ -196,7 +180,7 @@ class ExpandedApp extends React.Component {
         this.setState({truncatedDescription: truncatedString});
     }
 
-    toggleFullDescription() {
+    toggleFullDescription = () => {
         this.setState({showFullDescription: !this.state.showFullDescription});
     }
 
