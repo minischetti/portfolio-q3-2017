@@ -38,6 +38,45 @@ class Portfolio extends React.Component {
         }, 1000);
         this.animateApps();
     }
+    
+    // componentWillUpdate() {
+    //     let disableNavigation = this.state.showMessage;
+    //     console.log(this.state.showMessage);
+    //     if (disableNavigation) {
+    //         return;
+    //     };
+    //     document.removeEventListener("keyup", false);
+    //     document.addEventListener("keyup", function (event) {
+    //         this.keyboardNavigation(event);
+    //     });
+    // }
+
+    // keyboardNavigation = (event) => {
+    //     const apps = document.querySelectorAll(".app");
+    //     let counter = 0;
+    //     let selectedApp;
+    //     switch(event.keyCode) {
+    //         case 37:
+    //             if (counter > 0) {
+    //                 counter--;
+    //             }
+    //             break;
+    //         case 39:
+    //             if (counter < apps.length - 1) {
+    //                 counter++;
+    //             }
+    //             break;
+    //         case 13:
+    //             apps[counter].click();
+    //             break;
+    //     }
+    //     apps.forEach(function(app) {
+    //         app.classList.remove("selected");
+    //     });
+    //     selectedApp = apps[counter];
+    //     selectedApp.classList.add("selected");
+    //     console.log(counter);
+    // }
 
     updateSelectedApp = (selectedApp) => {
         this.setState({selectedApp});

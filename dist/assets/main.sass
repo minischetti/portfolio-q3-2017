@@ -2,8 +2,7 @@
     box-sizing: border-box
 
 html, body
-    width: 100%
-    height: 100%
+    +size(100%)
     margin: 0
 
 body
@@ -25,8 +24,7 @@ h1, p
     transition: .75s transform $timing-function, .75s opacity $timing-function
 
 .portfolio
-    width: 100%
-    height: 100%
+    +size(100%)
     overflow: hidden
     transform: scale(1)
     &.loading-screen-visible
@@ -56,8 +54,7 @@ h1, p
     position: absolute
     top: 30px
     right: 30px
-    width: 60px
-    height: 60px
+    +size(60px)
     z-index: 1
 
 .bio-switch
@@ -65,8 +62,7 @@ h1, p
     animation-delay: 2.5s
     animation-fill-mode: backwards
     position: relative
-    width: 100%
-    height: 100%
+    +size(100%)
     border-radius: 50%
     overflow: hidden
     background-color: rgba(0,0,0,.15)
@@ -146,7 +142,7 @@ h1, p
     position: absolute
     +full-width
     overflow: hidden
-    background-color: rgba(0,0,0,.65)
+    background-color: rgba(0,0,0,.75)
     z-index: 1
     &.williams-sonoma, &.metro-for-steam
         .expanded-app-logo
@@ -253,33 +249,30 @@ h1, p
     margin-top: 10px
 
 .app
+    $width: 250px
     position: relative
     display: flex
-    width: 250px
-    height: 125px
+    width: $width
+    height: $width / 2
     border-radius: 8px
     box-shadow: inset 0 0 40px rgba(0,0,0,.25), 0 0 10px 5px rgba(0,0,0,.25)
     transition: .25s all
     cursor: pointer
-    user-select: none
     outline: 0
     animation: 1s slideDown
     animation-fill-mode: backwards
-    transform-origin: bottom
     user-select: none
     -moz-user-select: none
-    &:hover
+    &:hover, &.selected
         transform: scale(1.1)
         box-shadow: inset 0 0 40px rgba(0,0,0,.25), 0 0 20px 10px rgba(0,0,0,.25)
 
-/* .app:hover .app-name
-    transform: translateY(150%)
-    opacity: 1
- */
+// .app:hover .app-name
+//     transform: translateY(150%)
+//     opacity: 1
 
 .app-logo
-    width: 50%
-    height: 50%
+    +size(50%)
     margin: auto
     pointer-events: none
 
@@ -369,8 +362,7 @@ h1, p
 .button-round
     text-transform: uppercase
     padding: 0
-    width: 60px
-    height: 60px
+    +size(60px)
     border-radius: 50%
     text-align: center
     line-height: 60px
